@@ -84,19 +84,7 @@ export default function GamesPage({ games, settings }: { games: Game[], settings
 }, [games, searchQuery, language]);
 
 
-  useEffect(() => {
-   
-    let orderedGames: typeof filteredGames = [];
-  
-    // 5. Sortiere die Spiele mit Punkten nach unten
-    const sorted = orderedGames.sort((a, b) => {
-      const hasPointsA = gamePointsMap[a.id] ? 1 : 0;
-      const hasPointsB = gamePointsMap[b.id] ? 1 : 0;
-      return hasPointsA - hasPointsB;
-    });
-  
-    // 6. Setze die Spiele in den Zustand
-  }, [filteredGames, gamePointsMap]); // Add dependencies to prevent infinite loop
+
   
   
   
