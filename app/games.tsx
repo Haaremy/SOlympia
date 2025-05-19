@@ -231,7 +231,7 @@ useEffect(() => {
             focus:outline-none focus:ring-2 focus:ring-pink-500 transition ${isScrolled ? "bottom-40" : "bottom-5"}
             `}
         />
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 mt-10">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mt-10">
           {filteredGames.length === 0 && !searchQuery && (
             <p className="col-span-full text-center text-gray-500">Keine Spiele gefunden.</p>
           )}
@@ -244,7 +244,7 @@ useEffect(() => {
               onClick={() => handleInfoOpen(game, settings)}
             >
               <Image
-                src={`/images/sGame_${game.id}.jpg`}
+                src={`/images/game_${game.id}.jpg`}
                 alt="Türchen Cover"
                 className={`w-full h-64 object-cover bg-gray-300 ${gamePointsMap[game.id] === true ? "grayscale" : "" }`}
                 width={500}

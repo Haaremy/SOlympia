@@ -11,16 +11,16 @@ export async function gameEntries() {
         create: [
           {
             language: 'de',   // Deutsche Version
-            title: 'Bäckerei',
-            story: 'Es ist der erste Tag im Dezember und das Haus riecht noch nicht nach Keksen, Stollen und Gewürzen? Na wie auch, wenn keiner die Behälter beschriftet und die Gewürze zum Ratespiel werden. Wir wissen zwar noch welche wir irgendwann mal hatten, aber nicht mehr welche noch da sind.',
+            title: 'Flaschenkind ',
+            story: 'Im Olymp wird oft gefeiert. Hierfür lassen wir die Korken knallen und fliegen. *peng* und offen.',
             station: 'Obergeschoss 1 - Foyer',
-            capacity: 'Mehrere Teams',
-            descriptionGame: 'Auf dem Tisch stehen 4 Gewürze (#1 - #4). Davor liegen mögliche Beschriftungen (1 - 20) der Behälter. Besprecht euch im Team, welche Beschriftung zu welchem Behälter passt.',
-            descriptionPoints: 'Tragt im entsprechenden #Feld die Lösungszahl der Beschriftung ein.'
+            capacity: '1 Spieler',
+            descriptionGame: 'Nimm dir eine Flasche mit Kronkorken und einen Öffner deiner Wahl (zB Zollstock). Ziel ist es vom Startpunkt den Korken so weit wie möglich zu schießen.',
+            descriptionPoints: 'Trag im entsprechenden #Feld die Distanz in Zentimeter ein.'
           },
           {
             language: 'en',   // Englische Version
-            title: 'Bakery',
+            title: 'Bottlechild',
             story: 'It\'s the first day of December and the house doesn\'t smell of cookies, fruitcake and spices yet? Well, how could it be? Nobody labelled the spice containers and now it\'s a guessing game! We remember which ones we bought, but not which ones we still have.',
             station: 'First Floor – Foyer',
             capacity: 'Multiple Teams',
@@ -41,7 +41,7 @@ const game2 = await prisma.game.create({
       create: [
         {
           language: 'de',
-          title: 'Passwort vergessen?',
+          title: 'Floppy-Diskus',
           story: 'Die Wunschliste wurde vor ein paar Jahren digitalisiert. Alle Briefe an den Nordpol werden gescannt und mit der Datenbank von Gut und Böse abgeglichen. Daraufhin wird der Wunsch auf die Liste gepackt. Beim Abrufen der diesjährigen Liste kann sich der Weihnachtsmann nicht mehr an sein Passwort erinnern, aber hat sich eine Erinnerung geschrieben.',
           station: 'Obergeschoss 1 - Foyer',
           capacity: 'Multiple Teams',
@@ -50,7 +50,7 @@ const game2 = await prisma.game.create({
         },
         {
           language: 'en',
-          title: 'Forgot your password?',
+          title: 'Floppy-Diskus',
           story: 'Santa’s wishlist was digitized a few years ago. All letters to the North Pole are scanned and cross-referenced with the Naughty and Nice database. The wish is then added to the list. When retrieving this year´s list, Santa can no longer remember his password! Luckily, he has left himself a clue.',
           station: 'First Floor – Foyer',
           capacity: 'Multiple teams',
@@ -71,7 +71,7 @@ const game3 = await prisma.game.create({
       create: [
         {
           language: 'de',
-          title: 'Do Re Miiiiii',
+          title: 'Dosenschießen ',
           story: 'Die Schallplatten des Elfenchors wurden zerkratzt! Die ganzen Aufnahmen des Hit-Albums \'Elf on its self\' sind ruiniert und keiner weiß mehr welches Lied nun welches ist! Helft den Elfen sich uz erinnern.',
           station: 'Erdgeschoss - Raum 106',
           capacity: '1 Team',
@@ -80,7 +80,7 @@ const game3 = await prisma.game.create({
         },
         {
           language: 'en',
-          title: 'Do Re Miiiiii',
+          title: 'Canned Shooter',
           story: 'The records of the Elf Choir have been scratched! All the recordings of the hit album \'Elf on itself\' are ruined and nobody knows which song is which anymore! Help the elves to remember.',
           station: 'Ground Floor – Room 106',
           capacity: '1 Team',
@@ -101,7 +101,7 @@ const game4 = await prisma.game.create({
       create: [
         {
           language: 'de',
-          title: 'Schnitzeljagd',
+          title: 'Falten und Fliegen',
           story: "'Junior Geschenke Spezialist' benötigt ein Studium und 10 Jahre Berufserfsahrung. Im X-ErasMAS+ Program werden Schüler von den verschiedenen Ausbildungsstätten kulturell geschult. Für einige ist das eine große Umstellung, insbesondere für die Osterhasen. Die Geschenke werden gar nicht versteckt?",
           station: 'Fachbereich INS',
           capacity: 'Multiple Teams',
@@ -110,7 +110,7 @@ const game4 = await prisma.game.create({
         },
         {
           language: 'en',
-          title: 'Paper Chase',
+          title: 'Fold and Fly',
           story: "Junior Gift Specialist requires a degree and 10 years of professional experience. In the X-ErasMAS+ Program, students from various educational institutions receive cultural training. For some, this is a big change, especially for the Easter bunnies. What do you mean, the presents are not hidden at all?",
           station: 'INS Department',
           capacity: 'Multiple teams',
@@ -131,7 +131,7 @@ const game5 = await prisma.game.create({
       create: [
         {
           language: 'de',
-          title: 'Verpackung',
+          title: 'Kühles Helles',
           story: 'Der Geschenke Bondage-Kurs ist ein Modul an der Santa-Universität. Prüfungsleistung ist es, alle Geschenke in der Zeit mit einer Schleife zu versehen.',
           station: 'Obergeschoss 1 - Raum 110',
           capacity: '1 Team',
@@ -140,7 +140,7 @@ const game5 = await prisma.game.create({
         },
         {
           language: 'en',
-          title: 'Wrapping',
+          title: 'Cool Blond',
           story: 'The Gift Wrapping Bondage Course is a module at Santa University. The final exam is to tie a bow around each gift within the time limit.',
           station: 'First Floor – Room 110',
           capacity: '1 Team',
@@ -161,7 +161,7 @@ const game6 = await prisma.game.create({
       create: [
         {
           language: 'de',
-          title: 'Mini-Curling',
+          title: 'Bierpong',
           story: 'Die Elfen des Weihnachtsmannes haben deinen Wunsch gelesen und der Gewerkschaft gemeldet. 5 Curlingsteine?! Der Sack des Weihnachtsmannes ist zwar magisch, aber die armen Elfen müssen auf ihre Gesundheit achten. Sie schenken dir gütiger Weise eines ihrer Curling-Sets. Das ist zwar nicht ganz so groß, wie ein normales, aber macht dennoch großen Spaß. Einen Besen brauchst du dafür auch nicht.',
           station: 'Erdgeschoss - Flur Westflügel',
           capacity: 'Solo Team',
@@ -170,7 +170,7 @@ const game6 = await prisma.game.create({
         },
         {
           language: 'en',
-          title: 'Mini Curling',
+          title: 'Beerpong',
           story: 'Santa\'s elves have read your wishlist and passed it on to the Union. 5 curling stones?! Santa\'s sack may be magical, but the poor elves have to watch out for their health. They kindly give you one of their curling sets. It\'s not quite as big as a normal one, but it\'s still great fun. You don\'t need a broom for this either.',
           station: 'Ground Floor – West wing corridor',
           capacity: 'Solo Team',
@@ -191,7 +191,7 @@ const game7 = await prisma.game.create({
       create: [
         {
           language: 'de',
-          title: 'Schneeball-Spur',
+          title: 'Eierlauf',
           story: 'Am Nordpol schon mal Hühner gesehen? Nein? Liegt vielleicht daran, dass es keine gibt. Entsprechend gibt es auch kein Frühstücksei und noch weniger Eier für Spiele. Die Elfen haben beim Austauschprogramm zur Osterhasen-Schule Eierlauf kennengelernt und jetzt für sich entdeckt.',
           station: 'Obergeschoss 1 - Flur Westflügel',
           capacity: '1 bis 2 Teams',
@@ -200,7 +200,7 @@ const game7 = await prisma.game.create({
         },
         {
           language: 'en',
-          title: 'Snowball Run',
+          title: 'Eggrun',
           story: 'Ever seen chickens at the North Pole? No? Maybe it\'s because there aren\'t any. So no eggs for breakfast, and even fewer eggs for games. The elves discovered the egg-and-spoon race during the exchange program at the Easter Bunny School and have now taken a liking to it.',
           station: 'First Floor – West wing corridor',
           capacity: '1 to 2 teams',
@@ -221,7 +221,7 @@ const game8 = await prisma.game.create({
       create: [
         {
           language: 'de',
-          title: '.. 22, 23, 24, ..',
+          title: 'Kegeln',
           story: 'Die Gewerkschaft der Elfen hat feste Regelungen, unter anderem zu den Pausenzeiten und den Vergütungen. Jedem Elf stehen bei einem 24 Stunden Arbeitstag 24 Pausen zu. In jeder Pause müssen sie Zugang zu Snacks haben. Da der Weihnachtsmann gar nicht mehr weiß, wie viele über sind, müsst ihr schätzen.',
           station: 'Obergeschoss 1 - Foyer',
           capacity: 'Multiple Teams',
@@ -230,7 +230,7 @@ const game8 = await prisma.game.create({
         },
         {
           language: 'en',
-          title: '... 22, 23, 24, ...',
+          title: 'Strike',
           story: 'The Elf Union has established strict regulations, including rules for break times and compensation. Every elf is entitled to 24 breaks in a 24-hour working day. During every break, they must have access to snacks. Since Santa doesn\'t even know how many are left, you\'ll have to guess.',
           station: 'First Floor – Foyer',
           capacity: 'Multiple teams',
@@ -251,7 +251,7 @@ const game9 = await prisma.game.create({
       create: [
         {
           language: 'de',
-          title: 'Schneeballschlacht',
+          title: 'Flunkyball',
           story: 'Kokosmakronen sind die Besten! - Nein, Vanille-Kipferl! : Die Elfen haben sich in 2 Parteien gespalten, was die besten Kekse sind und bekriegen sich nun mit Schneebällen (hoffentlich ohne Steine).',
           station: 'Erdgeschoss - Foyer',
           capacity: '1 Team',
@@ -260,7 +260,7 @@ const game9 = await prisma.game.create({
         },
         {
           language: 'en',
-          title: 'Snowballfight',
+          title: 'Flunkyball',
           story: 'Coconut macaroons are the best! – No, vanilla crescents! The elves have split into two parties over which are the best cookies and are now fighting each other with snowballs (hopefully without stones).',
           station: 'Ground Floor - Foyer',
           capacity: '1 Team',
@@ -271,37 +271,6 @@ const game9 = await prisma.game.create({
     }
   }
 });
-
-
-const game10 = await prisma.game.create({
-  data: {
-    url: '',
-    tagged: "hidden,overridePlayers",
-    languages: {
-      create: [
-        {
-          language: 'de',
-          title: 'Wettbacken',
-          story: 'Nicht nur am Nordpol ist die Debatte um die beste Kekssorte ein heißes Thema. Auch in unseren Küchen werden sie zum Gespräch (auch wenn Vanille Kipferle objektiv die besten sind).',
-          station: 'Erdgeschoss - Raum 110',
-          capacity: 'Multiple Teams',
-          descriptionGame: 'Vier Freunde – Elias(#1), Fiona(#2), Greta(#3) und Hannes(#4) – backen Kekse für Weihnachten. Jeder von ihnen hat einen anderen Keksfavoriten: Lebkuchen (1), Zimtsterne (2), Vanillekipferl (3) oder Spekulatius (4). Außerdem backt jeder eine andere Anzahl an Keksen (5, 6, 7 oder 9). Findet heraus, wer welchen Keks mag und wie viele Kekse jede Person gebacken hat, basierend auf den folgenden Hinweise: Findet ihr an der Station.',
-          descriptionPoints: "Tragt in jedes #Feld die Anzahl der Kekse mit der Zahl (ID) des Kekses (bspw 2 Zimtstern (9) = 29) ein."
-        },
-        {
-          language: 'en',
-          title: 'Baking Competition',
-          story: "It is not only at the North Pole that the debate about the best type of cookie is a hot topic. Even in our kitchens, they become a topic of conversation (even though vanilla crescents are objectively the best).",
-          station: 'Ground Floor - Room 110',
-          capacity: 'Multiple teams',
-          descriptionGame: "Four friends - Elias(#1), Fiona(#2), Greta(#3) and Hannes(#4) - bake cookies for Christmas. Each of them has a different cookie favorite: gingerbread (1), cinnamon stars (2), vanilla crescents (3) or speculoos (4). In addition, everyone bakes a different number of cookies (5, 6, 7 or 9). Find out who likes which cookie and how many cookies each person has baked based on the following clues: Find them at the station.",
-          descriptionPoints: "Enter into every #field the number of cookies with the number (id) of the cookie (e.g. 2 cinnamon stars (9) = 29)."
-        }
-      ]
-    }
-  }
-});
-
 
 
 }
