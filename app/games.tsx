@@ -231,7 +231,7 @@ useEffect(() => {
             focus:outline-none focus:ring-2 focus:ring-pink-500 transition ${isScrolled ? "bottom-40" : "bottom-5"}
             `}
         />
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mt-10">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-10">
           {filteredGames.length === 0 && !searchQuery && (
             <p className="col-span-full text-center text-gray-500">Keine Spiele gefunden.</p>
           )}
@@ -244,14 +244,16 @@ useEffect(() => {
               onClick={() => handleInfoOpen(game, settings)}
             >
               <Image
-                src={`/images/game_${game.id}.jpg`}
+                src={!game.tagged?.includes("noGame") ? `/images/game_${(game.id%3+1)}.jpg` : `/images/station.jpg`}
                 alt="Türchen Cover"
-                className={`w-full h-64 object-cover bg-gray-300 ${gamePointsMap[game.id] === true ? "grayscale" : "" }`}
-                width={500}
-                height={500}
+                className={`w-full rotate-${(game.id%3)*90} object-cover bg-gray-300 ${gamePointsMap[game.id] === true ? "grayscale" : "" }`}
+                width={600}
+                height={600}
               />
-              <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black to-transparent text-white">
-                <h2 className="text-xl font-semibold">{game.languages[language]?.title}</h2>
+              <div className="absolute inset-0 flex items-center justify-center text-white text-center">
+                <div className="bg-black/50 p-4 w-screen bg-gradient-to-b from-transparent via-black/10 to-transparent">
+                  <h2 className="text-xl font-semibold">{game.languages[language]?.title}</h2>
+                </div>
               </div>
             </div>
           ))}

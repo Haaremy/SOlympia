@@ -30,7 +30,7 @@ function MapSection({ title, games, searchQuery }: MapSectionProps) {
       <div className="relative flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden group cursor-pointer transition-transform transform">
         {/* Basisbild */}
         <Image
-          src={"/images/map_eg"}
+          src={"/images/map.jpg"}
           alt={`Map of ${title}`}
           className="w-full h-auto object-cover bg-gray-300"
           width={1600}
@@ -41,7 +41,7 @@ function MapSection({ title, games, searchQuery }: MapSectionProps) {
         {filteredGames.map((game) => (
           <span
             key={game.id}
-            className={`absolute text-white font-bold text-sm ${game.color} rounded-full w-6 h-6 flex items-center justify-center`}
+            className={`absolute text-white font-bold text-sm ${game.color} rounded-full min-w-6 h-6 flex items-center justify-center`}
             style={{
               top: `${game.top}%`,
               left: `${game.left}%`,

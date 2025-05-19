@@ -65,27 +65,27 @@ const game2 = await prisma.game.create({
 
 const game3 = await prisma.game.create({
   data: {
-    url: '',
-    tagged: "hidden,overridePlayers",
+    url: 'https://www.youtube.com/embed/sKCM5yMr4Js',
+    tagged:"noGame",
     languages: {
       create: [
         {
           language: 'de',
-          title: 'Dosenschießen ',
-          story: 'Die Schallplatten des Elfenchors wurden zerkratzt! Die ganzen Aufnahmen des Hit-Albums \'Elf on its self\' sind ruiniert und keiner weiß mehr welches Lied nun welches ist! Helft den Elfen sich uz erinnern.',
-          station: 'Erdgeschoss - Raum 106',
+          title: 'Grill',
+          story: 'Kokosmakronen sind die Besten! - Nein, Vanille-Kipferl! : Die Elfen haben sich in 2 Parteien gespalten, was die besten Kekse sind und bekriegen sich nun mit Schneebällen (hoffentlich ohne Steine).',
+          station: 'Erdgeschoss - Foyer',
           capacity: '1 Team',
-          descriptionGame: 'Es gibt einen Stationsleiter! Ihr erhaltet Tipps zum Lied ',
-          descriptionPoints: 'Ihr erhaltet 10 Punkte pro #Feld. Jeder Tipp gibt -2 Punkte.'
+          descriptionGame: 'Jeder Spieler hat 5 Würfe. Ihr werft auf die Wichtel/Elfen auf dem Tisch. Nach der Runde wird für den nächsten Spieler aufgebaut.',
+          descriptionPoints: 'Tragt die Anzahl der umgeworfenen Wichtel euer entsprechendes #Feld.'
         },
         {
           language: 'en',
-          title: 'Canned Shooter',
-          story: 'The records of the Elf Choir have been scratched! All the recordings of the hit album \'Elf on itself\' are ruined and nobody knows which song is which anymore! Help the elves to remember.',
-          station: 'Ground Floor – Room 106',
+          title: 'BBQ',
+          story: 'Coconut macaroons are the best! – No, vanilla crescents! The elves have split into two parties over which are the best cookies and are now fighting each other with snowballs (hopefully without stones).',
+          station: 'Ground Floor - Foyer',
           capacity: '1 Team',
-          descriptionGame: 'Listen to the station coordinator! You will receive tips on the song. ',
-          descriptionPoints: 'You will receive 10 points per #field. Each tip is worth -2 points.'
+          descriptionGame: 'Each player has 5 throws. You throw at the cans on the table (elves). After the round, the game is set up for the next player.',
+          descriptionPoints: 'Enter the number of cans that have fallen off the table in the corresponding #field.'
         }
       ]
     }
@@ -155,27 +155,27 @@ const game5 = await prisma.game.create({
 
 const game6 = await prisma.game.create({
   data: {
-    url: 'https://www.youtube.com/embed/YyZ09UlBV94',
-    tagged:":unit:Treffer:unit:",
+    url: 'https://www.youtube.com/embed/sKCM5yMr4Js',
+    tagged:"noGame",
     languages: {
       create: [
         {
           language: 'de',
-          title: 'Bierpong',
-          story: 'Die Elfen des Weihnachtsmannes haben deinen Wunsch gelesen und der Gewerkschaft gemeldet. 5 Curlingsteine?! Der Sack des Weihnachtsmannes ist zwar magisch, aber die armen Elfen müssen auf ihre Gesundheit achten. Sie schenken dir gütiger Weise eines ihrer Curling-Sets. Das ist zwar nicht ganz so groß, wie ein normales, aber macht dennoch großen Spaß. Einen Besen brauchst du dafür auch nicht.',
-          station: 'Erdgeschoss - Flur Westflügel',
-          capacity: 'Solo Team',
-          descriptionGame: 'Jeder Spieler hat 5 Schuss und es wird nacheinander gespielt. Der Spieler stellt oder hockt sich vor die Markierung und versucht, den Kreis zu treffen, indem er den Puck über den Boden schiebt.',
-          descriptionPoints: 'Jeder Treffer im äußeren Kreis sind 1 Punkt, der innere Kreis gibt 2 Punkte. Rechnet eure Punkte zusammen und tragt Sie in euer #Feld ein.'
+          title: 'Getränke',
+          story: 'Kokosmakronen sind die Besten! - Nein, Vanille-Kipferl! : Die Elfen haben sich in 2 Parteien gespalten, was die besten Kekse sind und bekriegen sich nun mit Schneebällen (hoffentlich ohne Steine).',
+          station: 'Erdgeschoss - Foyer',
+          capacity: '1 Team',
+          descriptionGame: 'Jeder Spieler hat 5 Würfe. Ihr werft auf die Wichtel/Elfen auf dem Tisch. Nach der Runde wird für den nächsten Spieler aufgebaut.',
+          descriptionPoints: 'Tragt die Anzahl der umgeworfenen Wichtel euer entsprechendes #Feld.'
         },
         {
           language: 'en',
-          title: 'Beerpong',
-          story: 'Santa\'s elves have read your wishlist and passed it on to the Union. 5 curling stones?! Santa\'s sack may be magical, but the poor elves have to watch out for their health. They kindly give you one of their curling sets. It\'s not quite as big as a normal one, but it\'s still great fun. You don\'t need a broom for this either.',
-          station: 'Ground Floor – West wing corridor',
-          capacity: 'Solo Team',
-          descriptionGame: 'Each player has 5 shots and the game is played in succession. The player kneels or crouches in front of the mark and tries to hit the circle by sliding the puck along the floor.',
-          descriptionPoints: 'Each hit in the outer circle is worth 1 point, the inner circle is worth 2 points. Add up your points and enter them in your #field.'
+          title: 'Drinks',
+          story: 'Coconut macaroons are the best! – No, vanilla crescents! The elves have split into two parties over which are the best cookies and are now fighting each other with snowballs (hopefully without stones).',
+          station: 'Ground Floor - Foyer',
+          capacity: '1 Team',
+          descriptionGame: 'Each player has 5 throws. You throw at the cans on the table (elves). After the round, the game is set up for the next player.',
+          descriptionPoints: 'Enter the number of cans that have fallen off the table in the corresponding #field.'
         }
       ]
     }
@@ -242,8 +242,67 @@ const game8 = await prisma.game.create({
   }
 });
 
-
 const game9 = await prisma.game.create({
+  data: {
+    url: 'https://www.youtube.com/embed/sKCM5yMr4Js',
+    tagged:"noGame",
+    languages: {
+      create: [
+        {
+          language: 'de',
+          title: 'Kreidewand',
+          story: 'Kokosmakronen sind die Besten! - Nein, Vanille-Kipferl! : Die Elfen haben sich in 2 Parteien gespalten, was die besten Kekse sind und bekriegen sich nun mit Schneebällen (hoffentlich ohne Steine).',
+          station: 'Erdgeschoss - Foyer',
+          capacity: '1 Team',
+          descriptionGame: 'Jeder Spieler hat 5 Würfe. Ihr werft auf die Wichtel/Elfen auf dem Tisch. Nach der Runde wird für den nächsten Spieler aufgebaut.',
+          descriptionPoints: 'Tragt die Anzahl der umgeworfenen Wichtel euer entsprechendes #Feld.'
+        },
+        {
+          language: 'en',
+          title: 'Chalkwall',
+          story: 'Coconut macaroons are the best! – No, vanilla crescents! The elves have split into two parties over which are the best cookies and are now fighting each other with snowballs (hopefully without stones).',
+          station: 'Ground Floor - Foyer',
+          capacity: '1 Team',
+          descriptionGame: 'Each player has 5 throws. You throw at the cans on the table (elves). After the round, the game is set up for the next player.',
+          descriptionPoints: 'Enter the number of cans that have fallen off the table in the corresponding #field.'
+        }
+      ]
+    }
+  }
+});
+
+
+const game11 = await prisma.game.create({
+  data: {
+    url: 'https://www.youtube.com/embed/YyZ09UlBV94',
+    tagged:":unit:Treffer:unit:",
+    languages: {
+      create: [
+        {
+          language: 'de',
+          title: 'Bierpong',
+          story: 'Die Elfen des Weihnachtsmannes haben deinen Wunsch gelesen und der Gewerkschaft gemeldet. 5 Curlingsteine?! Der Sack des Weihnachtsmannes ist zwar magisch, aber die armen Elfen müssen auf ihre Gesundheit achten. Sie schenken dir gütiger Weise eines ihrer Curling-Sets. Das ist zwar nicht ganz so groß, wie ein normales, aber macht dennoch großen Spaß. Einen Besen brauchst du dafür auch nicht.',
+          station: 'Erdgeschoss - Flur Westflügel',
+          capacity: 'Solo Team',
+          descriptionGame: 'Jeder Spieler hat 5 Schuss und es wird nacheinander gespielt. Der Spieler stellt oder hockt sich vor die Markierung und versucht, den Kreis zu treffen, indem er den Puck über den Boden schiebt.',
+          descriptionPoints: 'Jeder Treffer im äußeren Kreis sind 1 Punkt, der innere Kreis gibt 2 Punkte. Rechnet eure Punkte zusammen und tragt Sie in euer #Feld ein.'
+        },
+        {
+          language: 'en',
+          title: 'Beerpong',
+          story: 'Santa\'s elves have read your wishlist and passed it on to the Union. 5 curling stones?! Santa\'s sack may be magical, but the poor elves have to watch out for their health. They kindly give you one of their curling sets. It\'s not quite as big as a normal one, but it\'s still great fun. You don\'t need a broom for this either.',
+          station: 'Ground Floor – West wing corridor',
+          capacity: 'Solo Team',
+          descriptionGame: 'Each player has 5 shots and the game is played in succession. The player kneels or crouches in front of the mark and tries to hit the circle by sliding the puck along the floor.',
+          descriptionPoints: 'Each hit in the outer circle is worth 1 point, the inner circle is worth 2 points. Add up your points and enter them in your #field.'
+        }
+      ]
+    }
+  }
+});
+
+
+const game12 = await prisma.game.create({
   data: {
     url: 'https://www.youtube.com/embed/sKCM5yMr4Js',
     tagged:":unit:Treffer:unit:",
@@ -272,5 +331,34 @@ const game9 = await prisma.game.create({
   }
 });
 
+
+const game10 = await prisma.game.create({
+  data: {
+    url: '',
+    tagged: "hidden,overridePlayers",
+    languages: {
+      create: [
+        {
+          language: 'de',
+          title: 'Dosenschießen ',
+          story: 'Die Schallplatten des Elfenchors wurden zerkratzt! Die ganzen Aufnahmen des Hit-Albums \'Elf on its self\' sind ruiniert und keiner weiß mehr welches Lied nun welches ist! Helft den Elfen sich uz erinnern.',
+          station: 'Erdgeschoss - Raum 106',
+          capacity: '1 Team',
+          descriptionGame: 'Es gibt einen Stationsleiter! Ihr erhaltet Tipps zum Lied ',
+          descriptionPoints: 'Ihr erhaltet 10 Punkte pro #Feld. Jeder Tipp gibt -2 Punkte.'
+        },
+        {
+          language: 'en',
+          title: 'Canned Shooter',
+          story: 'The records of the Elf Choir have been scratched! All the recordings of the hit album \'Elf on itself\' are ruined and nobody knows which song is which anymore! Help the elves to remember.',
+          station: 'Ground Floor – Room 106',
+          capacity: '1 Team',
+          descriptionGame: 'Listen to the station coordinator! You will receive tips on the song. ',
+          descriptionPoints: 'You will receive 10 points per #field. Each tip is worth -2 points.'
+        }
+      ]
+    }
+  }
+});
 
 }
