@@ -244,7 +244,7 @@ useEffect(() => {
               onClick={() => handleInfoOpen(game, settings)}
             >
               <Image
-                src={!game.tagged?.includes("noGame") ? `/images/game_${(game.id%3+1)}.jpg` : `/images/station.jpg`}
+                src={!game.tagged?.includes("noGame") ? `/images/game_${(game.id%3)}.jpg` : `/images/station.jpg`}
                 alt="Türchen Cover"
                 className={`w-full rotate-${(game.id%3)*90} object-cover bg-gray-300 ${gamePointsMap[game.id] === true ? "grayscale" : "" }`}
                 width={600}
