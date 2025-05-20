@@ -216,7 +216,7 @@ useEffect(() => {
       <div className="flex-1 w-full transition-all duration-300">
         <input
           type="text"
-          placeholder="Suche nach Spielnummer..."
+          placeholder="Suche nach Station..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className={`${isModalOpen ? "hidden" : "block"} 
@@ -233,7 +233,7 @@ useEffect(() => {
         />
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-10">
           {filteredGames.length === 0 && !searchQuery && (
-            <p className="col-span-full text-center text-gray-500">Keine Spiele gefunden.</p>
+            <p className="col-span-full text-center text-gray-500">Keine Station gefunden.</p>
           )}
 
           {filteredGames.map((game) => (

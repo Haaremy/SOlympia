@@ -336,13 +336,13 @@ const formatTime = (ms: number) => {
                     {/* Points Description */}
                     <p className="text-sm mb-4">
                     {t("descriptionPoints")} 
-                    {teamData.players?.[0] ? (
+                    {teamData.players?.[0] || message.tagged.includes("noGame")  ? (
                     <>
                         <br />
                         <span>{message.points }</span>
                         <br />
                     </>
-                    ) : session ? (
+                    ) : session  ? (
                         <Link
                             href="/teampage"
                             className="px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600"
@@ -364,6 +364,7 @@ const formatTime = (ms: number) => {
                    <div className={`space-y-4 ${teamData.players?.[0] ? "" : "hidden"}`}>
   <div className="grid grid-cols-2 gap-4">
     {/* Player 1 */}
+    { !message.tagged.includes("noGame") &&
     <input
       type={`${message.tagged.includes("hidden")? !!points[0]?.value? "password" : "number" : "number"}`}
       placeholder={`Player 1`}
@@ -373,7 +374,7 @@ const formatTime = (ms: number) => {
       disabled={!!points[0]?.value || points[0]?.value === 0}
       className="w-full px-4 py-2 border-2 border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 transition dark:text-white"
     />
-
+}
     {/* Player 2 */}
     <input
       type={`${message.tagged.includes("hidden")? !!points[0]?.value? "password" : "number" : "number"}`}
