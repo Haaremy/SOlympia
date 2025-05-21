@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Language from "./language"; // Import der LanguageLogin Komponente
 import Login from "./login"; // Import der LanguageLogin Komponente
+import PlannedTime from "./plannedTime"; // Import der LanguageLogin Komponente
 import { useSession } from "next-auth/react"; // Import der useSession Hook
 import { Session } from "next-auth";
 import Link from "next/link";
@@ -14,6 +15,7 @@ import '../lib/i18n'
 export default function Navigation() {
   const [showLanguage, setShowLanguage] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [timePlan, setTimePlan] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { t, i18n } = useTranslation();  // Hook innerhalb der Komponente verwenden
 
@@ -43,6 +45,12 @@ export default function Navigation() {
     }
   };
 
+  const handleTimePlanOpen = () =>  {
+    setTimePlan(true);
+  }
+  const handleTimePlanClose = () =>  {
+    setTimePlan(false);
+  }
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -67,7 +75,8 @@ export default function Navigation() {
         if (!lang) {
             setShowLanguage(true); // Shows language selection if no language set
         } else if (status === "authenticated") {
-            handleLoginOpen(); // Open login modal if authenticated
+           // handleLoginOpen(); // Open login modal if authenticated
+           handleTimePlanOpen();
         }
     }
 }, [status, team?.credentials, i18n, handleLoginOpen]); // Füge handleLoginOpen hinzu
@@ -173,6 +182,7 @@ export default function Navigation() {
             
           </div>
           {/* Modals */}
+          {timePlan && <PlannedTime onClose={handleTimePlanClose} />}
           {showLanguage && <Language onClose={handleLanguageClose} />}
           {showLogin && <Login onClose={handleLoginClose} />}
         </div>

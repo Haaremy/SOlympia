@@ -187,7 +187,7 @@ export async function gameEntries() {
             language: 'de',
             title: 'Getränke Spot',
             story: '',
-            station: 'Ausgang der Mensa',
+            station: 'Hinterausgang der Mensa',
             capacity: 'So lange Getränke vorhanden sind.',
             descriptionGame: '',
             descriptionPoints: "Softdrinks, Bier, Spezi, Redbull"
@@ -302,7 +302,7 @@ export async function gameEntries() {
           {
             language: 'de',
             title: 'Techno Floor',
-            story: 'Lineup by Tom Grothum',
+            story: 'Lineup & DJ Tom Grothum',
             station: 'Erdgeschoss - Ostflur',
             capacity: 'Jeder der Party will!',
             descriptionGame: '19:30 - 01:00 Uhr',
@@ -360,10 +360,10 @@ export async function gameEntries() {
           {
             language: 'de',
             title: 'Flunkyball',
-            story: '',
-            station: '',
-            capacity: '',
-            descriptionGame: '',
+            story: 'In eier Reihe aufstellen, anvisieren und ... schießen!',
+            station: 'Wiese hinterm Fachbereich',
+            capacity: '2 bis 20 Spieler auf 2 Teams',
+            descriptionGame: 'Ihr braucht eine gleiche Anzahl pro Spieler in beiden Teams, jeder Spieler braucht ein Getränk seiner Wahl in der Falsche. Die Teams stehen sich in Reihe gegenüber, vor jedem Spieler auf dem Boden sein Getränk. In der Mitte des Spielfeldes steht eine mit Wasser halb gefüllte Plastikflasche. Macht euch aus wer starten darf. Das startende Team versucht mit dem Ball die Flasche umzuwerfen. Wurde getroffen, muss das Gegnerteam die Flasche wieder aufstellen und muss den Ball holen. In der Zwischenzeit muss das Starterteam sein Getränk so schnell wie möglich austrinken. Wenn das Gegnerteam mit Ball die Linie überquert und die Falsche steht, wird das Trinken gestopppt werden. Das Gegnerteam ist am Wurf. Es wird der Reihe nach geworfen. Wurde ein Getränk geleert, muss es durch umdrehen nachgewiesen werden. Tropft es innerhalb von 3 Sekunden, muss ein neues Getränk genommen werden. Schäumt ein Getränk über, muss der nächste Treffer ausgesetzt werden. Kippt eine Falsche um, muss eine Strafflasche zusätzlich getrunken werden.',
             descriptionPoints: ''
           },
           {
@@ -392,7 +392,7 @@ export async function gameEntries() {
             story: '',
             station: 'Erdgeschoss - Raum 110',
             capacity: '30 Personen',
-            descriptionGame: 'Unsere Chill-Lounge und Bar für den Techno Abend.',
+            descriptionGame: 'Unsere Chill-Lounge und Bar des Techno Abend.',
             descriptionPoints: ''
           },
           {
@@ -417,9 +417,9 @@ export async function gameEntries() {
         create: [
           {
             language: 'de',
-            title: 'Placeholder',
+            title: 'Splash Zone',
             story: '',
-            station: '',
+            station: 'Wiese hinterm Fachbereich',
             capacity: '',
             descriptionGame: '',
             descriptionPoints: ''
