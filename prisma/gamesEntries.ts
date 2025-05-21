@@ -238,7 +238,7 @@ export async function gameEntries() {
   const game9 = await prisma.game.create({
     data: {
       url: '',
-      tagged: ":unit:treffer:unit:",
+      tagged: ":unit:treffer:unit:,noScoreboard",
       languages: {
         create: [
           {
@@ -325,7 +325,7 @@ export async function gameEntries() {
   const game12 = await prisma.game.create({
     data: {
       url: '',
-      tagged: ":treffer:",
+      tagged: "noScoreboard",
       languages: {
         create: [
           {
@@ -354,7 +354,7 @@ export async function gameEntries() {
   const game13 = await prisma.game.create({
     data: {
       url: '',
-      tagged: ":unit:schlucke:unit:",
+      tagged: "noScoreboard",
       languages: {
         create: [
           {
@@ -412,7 +412,7 @@ export async function gameEntries() {
   const game15 = await prisma.game.create({
     data: {
       url: '',
-      tagged: "",
+      tagged: "noGame",
       languages: {
         create: [
           {

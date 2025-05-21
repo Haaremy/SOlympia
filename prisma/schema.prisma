@@ -34,15 +34,11 @@ model Language {
   descriptionPoints String  // Beschreibung der Punkte hinzufügen
 }
 
-model Team {
+model User {
   id           Int       @id @default(autoincrement())
-  credentials  String    @unique
+  username     String    @unique
   password     String
   name         String
-  user1        String
-  user2        String
-  user3        String?
-  user4        String?
   role         Role       @default(USER)
   pointsTotal  Float
   points       Points[]  // Beziehung zu Points (umkehrbare Beziehung)
@@ -57,11 +53,10 @@ enum Role{
 
 model Points {
   id          Int       @id @default(autoincrement())
-  team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [teamId], references: [id], onDelete: Cascade)
   teamId      Int
   game        Game      @relation(fields: [gameId], references: [id], onDelete: Cascade)
   gameId      Int
-  player      String
   value       Int
   slot        Int
   lastUpdated DateTime  @default(now())  // Store the timestamp of the last update (when points are submitted or updated)
@@ -69,11 +64,10 @@ model Points {
 
 model Entries {
   id          Int       @id @default(autoincrement())
-  team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [teamId], references: [id], onDelete: Cascade)
   teamId      Int
   game        Game      @relation(fields: [gameId], references: [id], onDelete: Cascade)
   gameId      Int
-  player      String
   value       Int
   slot        Int
   lastUpdated DateTime  @default(now())  // Store the timestamp of the last update (when points are submitted or updated)

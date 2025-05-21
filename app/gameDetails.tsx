@@ -69,7 +69,7 @@ const Modal: React.FC<ModalProps> = ({ message, onClose, onSave }) => {
   id: 0,
   credentials: "",
   name: "",
-  players: ["","","",""]
+  players: [""]
 });
 
 
@@ -77,10 +77,7 @@ const Modal: React.FC<ModalProps> = ({ message, onClose, onSave }) => {
     const { data: session } = useSession();
 
     const [playerInputs, setPlayerInputs] = useState({
-        user1: "",
-        user2: "",
-        user3: "",
-        user4: ""
+        user1: ""
     });
 
     const modalRef = useRef<HTMLDivElement>(null);
@@ -127,33 +124,12 @@ const Modal: React.FC<ModalProps> = ({ message, onClose, onSave }) => {
   try {
     const players: { [key: string]: number } = {
       user1: Number(playerInputs.user1) || -1,
-      user2: Number(playerInputs.user2) || -1,
-      user3: Number(playerInputs.user3) || -1,
-      user4: Number(playerInputs.user4) || -1,
     };
 
     // Grundregel: user1 & user2 müssen immer gesetzt sein
-    if (players.user1 === -1 || players.user2 === -1) {
-      setErrorMessage("Felder wurden fehlerhaft ausgefüllt. (1 o 2)");
+    if (players.name === -1) {
+      setErrorMessage("Felder wurden fehlerhaft ausgefüllt. (1)");
       throw new Error("Ungültige Eingaben");
-    }
-
-    if (!message.tagged.includes("overridePlayer") && !!teamData?.players?.[2] && players.user3 === -1) {
-      setErrorMessage("Felder wurden fehlerhaft ausgefüllt.");
-      throw new Error("Ungültige Eingaben");
-    }
-
-    if (!message.tagged.includes("overridePlayer") && !!teamData?.players?.[3] && players.user4 === -1) {
-      setErrorMessage("Felder wurden fehlerhaft ausgefüllt.");
-      throw new Error("Ungültige Eingaben");
-    }
-
-    // Wenn overridePlayer-Tag gesetzt ist, dann auch user3/4 validieren
-    if (message.tagged.includes("overridePlayer")) {
-      if (players.user3 === -1 || players.user4 === -1) {
-        setErrorMessage("Alle vier Spieler müssen ausgefüllt sein.");
-        throw new Error("Ungültige Eingaben");
-      }
     }
 
     // Senden
@@ -375,48 +351,7 @@ const formatTime = (ms: number) => {
       className="w-full px-4 py-2 border-2 border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 transition dark:text-white"
     />
 }
-    {/* Player 2 */}
-    <input
-      type={`${message.tagged.includes("hidden")? !!points[0]?.value? "password" : "number" : "number"}`}
-      placeholder={`Player 2`}
-      name="user2"
-      onChange={handleInputChange}
-      value={points[0]?.value && message.tagged.includes("hidden") ? "00000" : points[1]?.value !== undefined && points[1]?.value !== null ? points[1].value : (playerInputs.user2 ?? "")}
-      disabled={!!points[1]?.value || points[1]?.value === 0}
-      className="w-full px-4 py-2 border-2 border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 transition dark:text-white"
-    />
-
-    {/* Player 3 */}
-    {teamData.players?.[2] || message.tagged.includes("overridePlayer") ? (
-      <input
-        type={`${message.tagged.includes("hidden")? !!points[0]?.value? "password" : "number" : "number"}`}
-        placeholder={`Player 3`}
-        name="user3"
-        onChange={handleInputChange}
-        value={points[0]?.value && message.tagged.includes("hidden") ? "00000" : points[2]?.value !== undefined && points[2]?.value !== null ? points[2].value : (playerInputs.user3 ?? "")}
-        disabled={!!points[2]?.value || points[2]?.value === 0}
-        className="w-full px-4 py-2 border-2 border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 transition dark:text-white"
-      />
-    ) : (
-      // Wenn Player 3 nicht existiert, leeres div für Layout
-      <div></div>
-    )}
-
-    {/* Player 4 */}
-    {teamData.players?.[3] || message.tagged.includes("overridePlayer") ? (
-      <input
-        type={`${message.tagged.includes("hidden")? !!points[0]?.value? "password" : "number" : "number"}`}
-        placeholder={`Player 4`}
-        name="user4"
-        onChange={handleInputChange}
-        value={points[0]?.value && message.tagged.includes("hidden") ? "00000" : points[3]?.value !== undefined && points[3]?.value !== null ? points[3].value : (playerInputs.user4 ?? "")}
-        disabled={!!points[3]?.value || points[3]?.value === 0}
-        className="w-full px-4 py-2 border-2 border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 transition dark:text-white"
-      />
-    ) : (
-      // Leer lassen, damit Player 3 nicht breiter wird
-      <div></div>
-    )}
+    
   </div>
 
   {!points[0]?.value && timeLeft>0 && message.started && (

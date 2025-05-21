@@ -13,8 +13,6 @@ import Image from "next/image";
 
 export default function Page() {
   const [darkMode, setDarkMode] = useState(true);
-  const [showAdditionalPlayers1, setShowAdditionalPlayers1] = useState(false);
-  const [showAdditionalPlayers2, setShowAdditionalPlayers2] = useState(false);
   const { i18n } = useTranslation();
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -32,15 +30,13 @@ export default function Page() {
   id: 0,
   credentials: "",
   name: "",
-  players: ["","","",""]
+  players: [""]
 });
 
 
   const nameTRef = useRef<HTMLInputElement>(null);
   const user1Ref = useRef<HTMLInputElement>(null);
-  const user2Ref = useRef<HTMLInputElement>(null);
-  const user3Ref = useRef<HTMLInputElement>(null);
-  const user4Ref = useRef<HTMLInputElement>(null);
+
 
   
 
@@ -48,22 +44,16 @@ export default function Page() {
   const handleSave = async () => {
     const name = nameTRef.current?.value || null;
     const user1 = user1Ref.current?.value || null;
-    const user2 = user2Ref.current?.value || null;
-    const user3 = user3Ref.current?.value || null;
-    const user4 = user4Ref.current?.value || null;
+
 
     // --- Validierung ---
-  if (!user1 || !user2) {
+  if (!user1) {
     //alert("");
     handleSavedMessage("Bitte fülle mindestens Spieler 1 und Spieler 2 aus.", "Fehler", "red");
     return;
   }
 
 
-  if ((!user3 && user4)) {
-    handleSavedMessage("Bitte fülle zuerst den zusätzlichen Spieler 3 aus oder lasse beide leer.", "Fehler", "red");
-    return;
-  }
 
     const res = await fetch("/api/team/update", {
       method: "POST",
@@ -71,9 +61,6 @@ export default function Page() {
       body: JSON.stringify({
         name,
         user1,
-        user2,
-        user3,
-        user4,
         language: i18n.language,
       }),
     });
@@ -193,40 +180,7 @@ export default function Page() {
     {renderPlayerInput("Player 1:", user1Ref, 0)}
   </div>
 
-  {/* Player 2 */}
-  <div>
-    {renderPlayerInput("Player 2:", user2Ref, 1)}
-  </div>
-
-  {/* Player 3 */}
-  <div>
-    {(!showAdditionalPlayers1 && !teamData?.players?.[2]) ? (
-      <button
-        onClick={() => setShowAdditionalPlayers1(true)}
-        className={`w-full mt-9 p-3 border rounded-lg  dark:text-white border-black-500 dark:border-white-500 ${!teamData?.name ? "bg-white dark:bg-blue-700" : "bg-gray dark:bg-gray-700"}`}
-        disabled={!!teamData?.name}
-      >
-        + Player 3
-      </button>
-    ) : (
-      renderPlayerInput("Player 3:", user3Ref, 2)
-    )}
-  </div>
-
-  {/* Player 4 */}
-  <div>
-    {(!showAdditionalPlayers2 && !teamData?.players?.[3]) ? (
-      <button
-        onClick={() => setShowAdditionalPlayers2(true)}
-        className={`w-full mt-9 p-3 border rounded-lg  dark:text-white border-black-500 dark:border-white-500 ${!teamData?.name ? "bg-white dark:bg-blue-700" : "bg-gray dark:bg-gray-700"}`}
-        disabled={!!teamData?.name}
-      >
-        + Player 4
-      </button>
-    ) : (
-      renderPlayerInput("Player 4:", user4Ref, 3)
-    )}
-  </div>
+  
 </div>
 
 
