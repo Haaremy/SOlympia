@@ -17,6 +17,12 @@ const games = await prisma.game.findMany({
         },
       },
     },
+    languages:{
+      select: {
+        title: true,
+        gameId: true,
+      }
+    },
     points: {
       select: {
         value: true,
@@ -52,6 +58,7 @@ const result = games.map((game) => {
 
   return {
     gameId: game.id,
+    gameName: game.languages[0].title,
     topPlayer: topP?.user.name || null,
     topPoints: topP?.value || null,
     topEntries: matchingEntry?.value || null,

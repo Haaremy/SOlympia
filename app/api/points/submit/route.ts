@@ -65,7 +65,6 @@ export async function POST(req: NextRequest) {
       pointsToInsert.push({
         userId: user.id,
         gameId: game,
-        player: user.name,
         value: value,
         slot: field,
       });
@@ -73,7 +72,6 @@ export async function POST(req: NextRequest) {
        inputsToInsert.push({
         userId: user.id,
         gameId: game,
-        player: user.name,
         value: userPoints,
         slot: field,
       })

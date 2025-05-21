@@ -13,6 +13,8 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
     const modalRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
     const { t } = useTranslation();  // Hook innerhalb der Komponente verwenden
+    const hour = new Date().getHours().toString().padStart(2, '0');
+    const min = new Date().getMinutes();
 
     useEffect(() => {
         const modal = modalRef.current;
@@ -53,6 +55,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
         }
     };
 
+
     return (
         <div 
             ref={overlayRef}
@@ -72,10 +75,10 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
             >
                 {/* Modal Header (Icon + Title + Close Button) */}
                 <div className="flex justify-between items-center mb-4 ">
-                    <h2 className="flex items-center">
+                    <h2 className="flex items-center text-2xl text-pink-500">
                         Timetable
                     </h2>
-                    <p>{t("tt-1")}</p>
+                    
                     <button
                         onClick={onClose}
                         className="px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600"
@@ -87,8 +90,13 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
 
                 {/* Zwei untereinander platzierte Buttons */}
                 <div className="flex flex-col space-y-4 mt-4">
- 
-
+                <p className={` ${hour=="16" && min>=0  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-0")}</p>
+                <p className={` ${hour=="17" && min>=0  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-1")}</p>
+                <p className={` ${hour=="19" && min>=30  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-2")}</p>
+                <p className={` ${hour=="20" && min>=30  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-3")}</p>
+                <p className={` ${hour=="20" && min>=30  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-4")}</p>
+                <p className={` ${hour=="20" && min>=30  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-5")}</p>
+                <p className={` ${hour=="20" && min>=30  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-6")}</p>
 
 
                 </div>

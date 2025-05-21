@@ -3,23 +3,40 @@ import { prisma } from "@/lib/db";
 
 export async function GET() {
   try {
-    const user = await prisma.nutzer.findMany({
-      where: {
-        pointsTotal: {
-          gt: 0, // Nur Teams mit Punkten > 0
-        },
-      },
+     const user = await prisma.nutzer.findMany({
       orderBy: { pointsTotal: "desc" },
       include: {
-        entries: {
+        points: {
           include: {
-            game: true,
+            game: {
+              select: {
+                id: true,
+                tagged: true,
+                languages: {
+                  select: {
+                    title: true,
+                  },
+                },
+              },
+            },
           },
         },
       },
     });
 
-    return NextResponse.json(user);
+    const transformedUsers = user.map(user => ({
+  ...user,
+  points: user.points.map(point => ({
+    ...point,
+    game: {
+      ...point.game,
+      languages: point.game.languages.map(lang => lang.title),
+    },
+  })),
+}));
+
+
+    return NextResponse.json(transformedUsers);
   } catch (error) {
     console.error("Fehler beim Laden der Teams:", error);
     return NextResponse.json({ error: "Fehler beim Laden der Teams" }, { status: 500 });
