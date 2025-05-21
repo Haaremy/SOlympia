@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Olympia",
-  description: "Weihnachtsolympiade des Fachschaftsrat INS der Hochschule Anhalt. Website und Implementierung von @Haaremy.",
+  title: "Training der Olympia",
+  description: "Sommerfest des Fachschaftsrat INS der Hochschule Anhalt. Website und Implementierung von @Haaremy.",
 };
 
 export default function RootLayout({

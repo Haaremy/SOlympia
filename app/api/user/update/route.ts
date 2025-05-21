@@ -14,20 +14,17 @@ export async function POST(req: Request) {
   const data = await req.json();
 
   try {
-    const updatedTeam = await prisma.team.update({
-      where: { credentials: session.user.credentials },
+    const updatedUser = await prisma.nutzer.update({
+      where: { uname: session.user.uname },
       data: {
         name: data.name,
-        user1: data.user1,
-        user2: data.user2,
-        user3: data.user3,
-        user4: data.user4,
+        uname: data.uname,
       },
     });
 
-    return NextResponse.json({ success: true, team: updatedTeam });
+    return NextResponse.json({ success: true, user: updatedUser });
   } catch (error) {
-    console.error("[POST /api/team/update]", error);
+    console.error("[POST /api/user/update]", error);
     return NextResponse.json({ error: "Fehler beim Aktualisieren" }, { status: 500 });
   }
 }

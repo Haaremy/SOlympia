@@ -28,14 +28,13 @@ interface ModalProps {
         languages: { language: string; title: string; story: string }[];
     };
     onClose: () => void;
-    onSave: () => void;
 }
 
 type PointEntry = {
   id: number;
   gameId: number;
-  teamId: number;
-  player: string;
+  userId: number;
+  name: string;
   value: number;
   slot: number;
   lastUpdated: Date;
@@ -43,7 +42,7 @@ type PointEntry = {
 
 
 
-const Modal: React.FC<ModalProps> = ({ message, onClose, onSave }) => {
+const Modal: React.FC<ModalProps> = ({ message, onClose }) => {
     const { setIsModalOpen } = useUI();
     const [showSaved, setShowSaved] = useState(false); 
     const [showNotSaved, setShowNotSaved] = useState(false); 
@@ -51,6 +50,7 @@ const Modal: React.FC<ModalProps> = ({ message, onClose, onSave }) => {
     const [showMap, setShowMap] = useState(false);
     const [points, setPoints] = useState<PointEntry[]>([]);
     const globalPointsRef = useRef<PointEntry[]>([]);
+    
 
     const { t } = useTranslation(); 
 
@@ -60,7 +60,7 @@ const Modal: React.FC<ModalProps> = ({ message, onClose, onSave }) => {
     const handleNotSavedClose = () => setShowNotSaved(false);
     const [updateSite, setUpdateSite] = useState(true);
       const [updateData, setUpdateData] = useState(false);
-  const [teamData, setTeamData] = useState<{
+  const [userData, setUserData] = useState<{
   id?: number;
   credentials?: string;
   name?: string;
@@ -149,7 +149,6 @@ const Modal: React.FC<ModalProps> = ({ message, onClose, onSave }) => {
     localStorage.setItem("playedGames", `${playedGames}+${formattedId}+`);
 
     setTimeout(() => setShowSaved(false), 3000);
-    onSave();
 
   } catch (error) {
     console.log("Speichern fehlgeschlagen:", error);
@@ -199,11 +198,11 @@ useEffect(() => {
 }, [updateSite, fetchData]);
 
   useEffect(() => {
-  if (!session?.user?.credentials) return;
+  if (!session?.user?.uname) return;
 
-  const fetchTeam = async () => {
+  const fetchUser = async () => {
     try {
-      const res = await fetch(`/api/team/search?query=${session.user.credentials}`, {
+      const res = await fetch(`/api/user/search?query=${session.user.uname}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -211,15 +210,15 @@ useEffect(() => {
       if (!res.ok) throw new Error("Fehler beim Laden des Teams");
 
       const data = await res.json();
-      setTeamData(data.team); // Nur das team-Objekt setzen
+      setUserData(data.user); // Nur das user-Objekt setzen
     } catch (error) {
-      console.error("Team-Fehler:", error);
+      console.error("User-Fehler:", error);
     } finally {
       setUpdateData(false); // Immer nach dem Versuch zurücksetzen
     }
   };
 
-  fetchTeam();
+  fetchUser();
 }, [session, updateData]);
 
 
@@ -310,22 +309,23 @@ const formatTime = (ms: number) => {
                     </p>
 
                     {/* Points Description */}
+                    
                     <p className="text-sm mb-4">
-                    {t("descriptionPoints")} 
-                    {teamData.players?.[0] || message.tagged.includes("noGame")  ? (
+                    {!message.tagged.includes("noScoreboard") && t("descriptionPoints")} 
+                    {!message.tagged.includes("noScoreboard") && userData.name  ? (
                     <>
                         <br />
                         <span>{message.points }</span>
                         <br />
                     </>
-                    ) : session  ? (
+                    ) : !message.tagged.includes("noScoreboard") && session  ? (
                         <Link
-                            href="/teampage"
+                            href="/userpage"
                             className="px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600"
                         >
                             {t("Edit Team")}
                         </Link> 
-                    ) : (
+                    ) : !message.tagged.includes("noScoreboard") && (
                         <button className="px-4 py-1 bg-pink-500 text-white rounded-lg hover:bg-pink-600 ml-2" onClick={handleShowLogin}>
                             {t("Login now")}
                         </button>
@@ -337,10 +337,10 @@ const formatTime = (ms: number) => {
                 
 
                     {/* Player Inputs */}
-                   <div className={`space-y-4 ${teamData.players?.[0] ? "" : "hidden"}`}>
+                   <div className={`space-y-4 ${userData.name ? "" : "hidden"}`}>
   <div className="grid grid-cols-2 gap-4">
     {/* Player 1 */}
-    { !message.tagged.includes("noGame") &&
+    { !message.tagged.includes("noGame") && !message.tagged.includes("noScoreboard") &&
     <input
       type={`${message.tagged.includes("hidden")? !!points[0]?.value? "password" : "number" : "number"}`}
       placeholder={`Player 1`}
@@ -351,10 +351,7 @@ const formatTime = (ms: number) => {
       className="w-full px-4 py-2 border-2 border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 transition dark:text-white"
     />
 }
-    
-  </div>
-
-  {!points[0]?.value && timeLeft>0 && message.started && (
+    {!points[0]?.value && timeLeft>0 && message.started && !message.tagged.includes("noScoreboard") && (
     <div className="text-right">
       <button
         className="ml-auto inline-flex px-2 py-1 bg-pink-500 text-white text-xl rounded-lg shadow-lg hover:bg-pink-600 transition duration-300"
@@ -372,6 +369,9 @@ const formatTime = (ms: number) => {
       </label>
     </div>
   )}
+  </div>
+
+  
 </div>
 
                     

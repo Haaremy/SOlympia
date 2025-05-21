@@ -34,15 +34,15 @@ model Language {
   descriptionPoints String  // Beschreibung der Punkte hinzufügen
 }
 
-model User {
+model Nutzer {
   id           Int       @id @default(autoincrement())
-  username     String    @unique
+  uname        String    @unique
   password     String
   name         String
   role         Role       @default(USER)
   pointsTotal  Float
   points       Points[]  // Beziehung zu Points (umkehrbare Beziehung)
-  entries   Entries[]
+  entries      Entries[]
   language     String @default("de")
 }
 
@@ -53,8 +53,8 @@ enum Role{
 
 model Points {
   id          Int       @id @default(autoincrement())
-  user        User      @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  teamId      Int
+  user        Nutzer      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int
   game        Game      @relation(fields: [gameId], references: [id], onDelete: Cascade)
   gameId      Int
   value       Int
@@ -64,8 +64,8 @@ model Points {
 
 model Entries {
   id          Int       @id @default(autoincrement())
-  user        User      @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  teamId      Int
+  user        Nutzer      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int
   game        Game      @relation(fields: [gameId], references: [id], onDelete: Cascade)
   gameId      Int
   value       Int

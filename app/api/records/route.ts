@@ -8,9 +8,8 @@ const games = await prisma.game.findMany({
     tagged: true, // ✅ Das Feld, das sonst fehlt
     entries: {
       select: {
-        player: true,
         value: true,
-        team: {
+        user: {
           select: {
             id: true,
             name: true,
@@ -20,9 +19,8 @@ const games = await prisma.game.findMany({
     },
     points: {
       select: {
-        player: true,
         value: true,
-        team: {
+        user: {
           select: {
             id: true,
             name: true,
@@ -34,40 +32,15 @@ const games = await prisma.game.findMany({
 });
 
 
- type GameWithPointsAndTeam = {
-  id: number;
-  tagged: string | null;
-  entries: {
-    player: string;
-    value: number;
-    team: {
-      id: number;
-      name: string;
-    };
-  }[];
-  points: {
-    player: string;
-    value: number;
-    team: {
-      id: number;
-      name: string;
-    };
-  }[];
-};
 
 
-
-const result = games.map((game: GameWithPointsAndTeam) => {
+const result = games.map((game) => {
   const { order, field } = parseTagged(game.tagged || "");
 
   const getValue = (item: typeof game.points[0]): string | number => {
     switch (field) {
       case "field1":
-        return item.player;
-      case "field2":
-        return item.value;
-      case "field3":
-        return item.team.name;
+        return item.user.name;
       default:
         return ""; // Fallback
     }
@@ -75,18 +48,18 @@ const result = games.map((game: GameWithPointsAndTeam) => {
 
   const topP = getTopPlayer(game.points, { order, getValue });
 
-  const matchingEntry = game.entries.find(e => e.team.id === topP?.team.id);
+  const matchingEntry = game.entries.find(e => e.user.id === topP?.user.id);
 
   return {
     gameId: game.id,
-    topPlayer: topP?.player || null,
+    topPlayer: topP?.user.name || null,
     topPoints: topP?.value || null,
     topEntries: matchingEntry?.value || null,
     tagged: game.tagged,
-    team: topP?.team
+    user: topP?.user
       ? {
-          id: topP.team.id,
-          name: topP.team.name,
+          id: topP.user.id,
+          name: topP.user.name,
         }
       : null,
   };

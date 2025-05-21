@@ -1,6 +1,6 @@
 import { prisma } from '../lib/db'
 import { gameEntries } from './gamesEntries'
-import { teamEntries } from './teamEntries'
+import { userEntries } from './userEntries'
 import { gameSettings} from './gameSettings'
 
 //const prisma = new PrismaClient()
@@ -12,8 +12,8 @@ async function cleanDB() {
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Points'`;
   await prisma.language.deleteMany({});
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Language'`;
-  await prisma.team.deleteMany({});
-  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Team'`;
+  await prisma.nutzer.deleteMany({});
+  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Nutzer'`;
   await prisma.game.deleteMany({});
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Game'`;
   await prisma.gameSettings.deleteMany({});
@@ -29,7 +29,7 @@ async function seedDB() {
   await gameEntries();
   console.log('✅ Seeded game with languages.')
 
-  await teamEntries();
+  await userEntries();
   console.log('✅ Seeded empty Teams.')
 
   await gameSettings();

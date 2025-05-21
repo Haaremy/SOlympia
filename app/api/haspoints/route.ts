@@ -5,13 +5,13 @@ import { prisma } from "@/lib/db";
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const teamIdParam = searchParams.get("teamId");
+    const userIdParam = searchParams.get("userId");
     const gameIdParam = searchParams.get("gameId");
 
-    const teamId = Number(teamIdParam);
+    const userId = Number(userIdParam);
     const gameId = Number(gameIdParam);
 
-    if (!teamIdParam || !gameIdParam || isNaN(teamId) || isNaN(gameId)) {
+    if (!userIdParam || !gameIdParam || isNaN(userId) || isNaN(gameId)) {
       return new Response(JSON.stringify({ error: "Invalid or missing teamId or gameId" }), {
         status: 400,
       });
@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
 
     const existingPoints = await prisma.points.findFirst({
       where: {
-        teamId,
+        userId,
         gameId,
       },
     });

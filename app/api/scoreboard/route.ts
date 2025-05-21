@@ -3,7 +3,7 @@ import { prisma } from "@/lib/db";
 
 export async function GET() {
   try {
-    const teams = await prisma.team.findMany({
+    const user = await prisma.nutzer.findMany({
       where: {
         pointsTotal: {
           gt: 0, // Nur Teams mit Punkten > 0
@@ -19,7 +19,7 @@ export async function GET() {
       },
     });
 
-    return NextResponse.json(teams);
+    return NextResponse.json(user);
   } catch (error) {
     console.error("Fehler beim Laden der Teams:", error);
     return NextResponse.json({ error: "Fehler beim Laden der Teams" }, { status: 500 });

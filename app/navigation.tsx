@@ -20,7 +20,7 @@ export default function Navigation() {
   const { t, i18n } = useTranslation();  // Hook innerhalb der Komponente verwenden
 
   const { data: session, status } = useSession();
-  const team = session?.user as Session["user"];
+  const user = session?.user as Session["user"];
 
   const currentPath = usePathname(); // Hol dir den aktuellen Pfad
 
@@ -79,7 +79,7 @@ export default function Navigation() {
            handleTimePlanOpen();
         }
     }
-}, [status, team?.credentials, i18n, handleLoginOpen]); // Füge handleLoginOpen hinzu
+}, [status, user?.uname, i18n, handleLoginOpen]); // Füge handleLoginOpen hinzu
 
   
 
@@ -112,9 +112,9 @@ export default function Navigation() {
           {/* Button-Gruppe */}
           <div className="flex flex-wrap gap-2 justify-center sm:justify-end">
 
-          {currentPath !== "/adminpage" && currentPath !== "/teampage" ? (
-              team ? (
-                team.role === "ADMIN" ? (
+          {currentPath !== "/adminpage" && currentPath !== "/userpage" ? (
+              user ? (
+                user.role === "ADMIN" ? (
                   <Link
                     href="/adminpage"
                     className="px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600"
@@ -123,10 +123,10 @@ export default function Navigation() {
                   </Link>
                 ) : (
                   <Link
-                    href="/teampage"
+                    href="/userpage"
                     className="px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600"
                   >
-                    <p className="text-lg font-semibold">Team</p>
+                    <p className="text-lg font-semibold">Player</p>
                   </Link>
                 )
               ) : (

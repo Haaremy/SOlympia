@@ -14,22 +14,22 @@ export async function GET(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
 
-    if (!session || !session.user?.credentials) {
+    if (!session || !session.user?.uname) {
       return NextResponse.json({ error: 'Nicht autorisiert' }, { status: 401 });
     }
 
-    const team = await prisma.team.findUnique({
-      where: { credentials: session.user.credentials },
+    const nutzer = await prisma.nutzer.findUnique({
+      where: { uname: session.user.uname },
     });
 
-    if (!team) {
+    if (!nutzer) {
       return NextResponse.json({ error: 'Team nicht gefunden' }, { status: 404 });
     }
 
 
     const points = await prisma.points.findMany({
       where: {
-        teamId: team.id,
+        userId: nutzer.id,
         gameId: gameId,
       },
       orderBy: {

@@ -6,8 +6,7 @@ import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import '../lib/i18n';
 import { useUI } from "./context/UIContext";
-import { useSession } from "next-auth/react"; // Import der useSession Hook
-import { Session } from "next-auth";
+
 
 type Game = {
   id: number;
@@ -57,11 +56,7 @@ export default function GamesPage({ games, settings }: { games: Game[], settings
   const [selectedGame, setSelectedGame] = useState<GameData | null>(null);
   const [language, setLanguage] = useState("de"); // Default
   const { isModalOpen } = useUI();
-  const { data: session } = useSession();
-  const team = session?.user as Session["user"];
   const { i18n } = useTranslation();  // Hook innerhalb der Komponente verwenden
-  const [gamePointsMap, setGamePointsMap] = useState<Record<number, boolean>>({});
-  const [fetchPointsForGames, setfetchPointsForGames] = useState(false);
 
 
   // Setze die Sprache basierend auf i18n
@@ -150,63 +145,6 @@ export default function GamesPage({ games, settings }: { games: Game[], settings
   };
 
 
-const handleFetchPointsForGames = () => {
-  setfetchPointsForGames(true);
-}
-
-useEffect(() => {
-    const teamId = Number(team?.id);
-    const isValidTeamId = !isNaN(teamId) && teamId > 0;
-    console.log("team?.id:", team?.id);
-    console.log("isValidTeamId:", isValidTeamId);
-
-    if (!isValidTeamId) return;
-
-    const loadGamePoints = async () => {
-      const temp = localStorage.getItem("playedGames") || "";
-      let playedGames = temp || "0+";
-
-      const map: Record<number, boolean> = {};
-
-      await Promise.all(
-        games.map(async (game) => {
-          try {
-            if (temp.includes("0+") && !temp.includes(team.id)) {
-              const res = await fetch(`/api/hasPoints?teamId=${teamId}&gameId=${game.id}`);
-              if (!res.ok) return;
-
-              const text = await res.text();
-              const data = text ? JSON.parse(text) : { hasPoints: false };
-
-              if (data.hasPoints || temp.includes("+"+team.id+"+")) {
-                playedGames += `+${game.id}+`;
-              }
-            }
-
-            if (
-              playedGames.includes(
-                game.id < 10 ? `0${game.id}` : game.id.toString()
-              )
-            ) {
-              map[game.id] = true;
-            }
-          } catch (err) {
-            console.error(`Fehler bei Spiel ${game.id}:`, err);
-            map[game.id] = false;
-          }
-        })
-      );
-
-      localStorage.setItem("playedGames", playedGames);
-      setGamePointsMap(map);
-
-
-    };
-
-    loadGamePoints();
-    setfetchPointsForGames(false);
-  }, [team?.id, games, fetchPointsForGames]);
-
 
 
   
@@ -246,7 +184,7 @@ useEffect(() => {
               <Image
                 src={!game.tagged?.includes("noGame") ? `/images/game_${(game.id%3)}.jpg` : `/images/station.jpg`}
                 alt="Türchen Cover"
-                className={`w-full rotate-${(game.id%3)*90} object-cover bg-gray-300 ${gamePointsMap[game.id] === true ? "grayscale" : "" }`}
+                className={`w-full rotate-${(game.id%3)*90} object-cover bg-gray-300`}
                 width={600}
                 height={600}
               />
@@ -258,7 +196,7 @@ useEffect(() => {
             </div>
           ))}
         </div>
-        {showInfo && selectedGame && <InfoBox message={selectedGame} onClose={handleInfoClose} onSave={handleFetchPointsForGames} />}
+        {showInfo && selectedGame && <InfoBox message={selectedGame} onClose={handleInfoClose}  />}
       </div>
     </main>
   );

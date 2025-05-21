@@ -21,16 +21,14 @@ export default function Page() {
   const [infoTitle, setInfoTitle] = useState("!?!?!");
   const [infoColor, setInfoColor] = useState("red");
   const [updateData, setUpdateData] = useState(false);
-  const [teamData, setTeamData] = useState<{
+  const [userData, setUserData] = useState<{
   id?: number;
-  credentials?: string;
+  uname?: string;
   name?: string;
-  players?: string[];
 }>({
   id: 0,
-  credentials: "",
+  uname: "",
   name: "",
-  players: [""]
 });
 
 
@@ -43,11 +41,11 @@ export default function Page() {
 
   const handleSave = async () => {
     const name = nameTRef.current?.value || null;
-    const user1 = user1Ref.current?.value || null;
+    const uname = user1Ref.current?.value || null;
 
 
     // --- Validierung ---
-  if (!user1) {
+  if (!uname) {
     //alert("");
     handleSavedMessage("Bitte fülle mindestens Spieler 1 und Spieler 2 aus.", "Fehler", "red");
     return;
@@ -55,12 +53,12 @@ export default function Page() {
 
 
 
-    const res = await fetch("/api/team/update", {
+    const res = await fetch("/api/user/update", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name,
-        user1,
+        uname,
         language: i18n.language,
       }),
     });
@@ -96,35 +94,34 @@ export default function Page() {
   const handleLogout = async () => {
     await signOut({ redirect: false });
     // Du kannst hier auch eine benutzerdefinierte Weiterleitung hinzufügen:
-    localStorage.setItem("playedGames", "0+")
     router.push('/');
   };
 
- const getTeam = useCallback(async () => {
-      const res = await fetch(`/api/team/search?query=${session?.user.credentials}`, {
+ const getUser = useCallback(async () => {
+      const res = await fetch(`/api/user/search?query=${session?.user.uname}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     }); 
     const data = await res.json();
     return data;
-    },[session?.user.credentials]);
+    },[session?.user.uname]);
 
   useEffect(() => {
     if (status !== "loading" && !session) {
       router.push("/");
-    } else if (session?.user?.credentials) {
+    } else if (session?.user?.uname) {
      
 
    
-      const fetchTeam = async () => {
-      const response = await getTeam();
-      setTeamData(response.team); // setze nur das team-Objekt
+      const fetchUser = async () => {
+      const response = await getUser();
+      setUserData(response.user); // setze nur das team-Objekt
       
       }
-      fetchTeam();
+      fetchUser();
     }
     setUpdateData(false);
-  }, [status, session, router, updateData, getTeam]);
+  }, [status, session, router, updateData, getUser]);
   
   if (status === "loading") {
     return <div className="text-center text-gray-500 mt-10">Loading...</div>; // Oder ein Skeleton Loader
@@ -143,8 +140,8 @@ export default function Page() {
       ref={ref}
       className="w-full mt-2 p-3 bg-white border border-gray-300 rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
       placeholder={`${t("enterPlayer")} ${index + 1}>`}
-      defaultValue={teamData?.players?.[index] || ""}
-      disabled={!!teamData?.players?.[index]}
+      defaultValue={userData?.uname || ""}
+      disabled={!!userData?.uname}
     />
   </div>
 );
@@ -168,8 +165,8 @@ export default function Page() {
               ref={nameTRef}
               className="w-full mt-2 p-3 bg-white border border-gray-300 rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
               placeholder={t("enterTeam")}
-              defaultValue={teamData.name || ""}
-              disabled={!!teamData.name}
+              defaultValue={userData.name || ""}
+              disabled={!!userData.name}
             />
           </h1>
 
@@ -177,7 +174,7 @@ export default function Page() {
 <div className="grid grid-cols-2 gap-4 mb-6">
   {/* Player 1 */}
   <div>
-    {renderPlayerInput("Player 1:", user1Ref, 0)}
+    {renderPlayerInput("Name:", user1Ref, 0)}
   </div>
 
   
@@ -229,7 +226,7 @@ export default function Page() {
 
         {/* Speichern-Button */}
         <button
-          className={`${!!session.user.user1 && !!session.user.user2 && !!session.user.name ? "hidden" : "fixed"} bottom-20 right-6 px-6 py-3 bg-pink-500 text-white rounded-lg shadow-lg hover:bg-pink-900 transition duration-300`}
+          className={`${!!userData.name ? "hidden" : "fixed"} bottom-20 right-6 px-6 py-3 bg-pink-500 text-white rounded-lg shadow-lg hover:bg-pink-900 transition duration-300`}
           onClick={handleSave}
         >
           &#x1F4BE;

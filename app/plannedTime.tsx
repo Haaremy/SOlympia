@@ -12,8 +12,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
     const { setIsModalOpen } = useUI();
     const modalRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
-    const { i18n } = useTranslation();  // Hook innerhalb der Komponente verwenden
-
+    const { t } = useTranslation();  // Hook innerhalb der Komponente verwenden
 
     useEffect(() => {
         const modal = modalRef.current;
@@ -73,9 +72,10 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
             >
                 {/* Modal Header (Icon + Title + Close Button) */}
                 <div className="flex justify-between items-center mb-4 ">
-                    <div className="flex items-center">
+                    <h2 className="flex items-center">
                         Timetable
-                    </div>
+                    </h2>
+                    <p>{t("tt-1")}</p>
                     <button
                         onClick={onClose}
                         className="px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600"
