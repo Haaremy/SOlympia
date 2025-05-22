@@ -20,14 +20,14 @@ export async function GET(req: Request) {
     ]
   }
 });
-  const foundTeam = nutzer[0]!;
+  const foundUser = nutzer[0]!;
 
   return NextResponse.json({
     found: true,
     user: {
-      id: foundTeam.id,
-      uname: foundTeam.uname,
-      name: foundTeam.name,
+      id: foundUser.id || 0,
+      uname: foundUser.uname,
+      name: foundUser.name,
     },
   });
 }

@@ -343,15 +343,14 @@ const formatTime = (ms: number) => {
     { !message.tagged.includes("noGame") && !message.tagged.includes("noScoreboard") &&
     <input
       type={`${message.tagged.includes("hidden")? !!points[0]?.value? "password" : "number" : "number"}`}
-      placeholder={`Player 1`}
-      value={points[0]?.value && message.tagged.includes("hidden") ? "00000" : points[0]?.value !== undefined && points[0]?.value !== null ? points[0].value : (playerInputs.user1 ?? "")}
+      placeholder={`Punkte`}
+      //value={points[0]?.value && message.tagged.includes("hidden") ? "00000" : points[0]?.value !== undefined && points[0]?.value !== null ? points[0].value : (playerInputs.user1 ?? "")}
       name="user1"
       onChange={handleInputChange}
-      disabled={!!points[0]?.value || points[0]?.value === 0}
       className="w-full px-4 py-2 border-2 border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 transition dark:text-white"
     />
 }
-    {!points[0]?.value && timeLeft>0 && message.started && !message.tagged.includes("noScoreboard") && (
+    {timeLeft>0 && message.started && !message.tagged.includes("noScoreboard") && (
     <div className="text-right">
       <button
         className="ml-auto inline-flex px-2 py-1 bg-pink-500 text-white text-xl rounded-lg shadow-lg hover:bg-pink-600 transition duration-300"

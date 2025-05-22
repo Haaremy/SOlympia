@@ -27,21 +27,4 @@ export async function userEntries() {
           role: 'ADMIN'
         })
       });
-
-      const dummyTeam = await prisma.nutzer.create({
-        data: getEmptyUser({
-          uname: 'DUMMY_01_Nickname',
-          password: 'TEST',
-          role: 'USER',
-          name: 'Dummys Full Name',
-        })
-      });
-
-      const dummyTeam2 = await prisma.nutzer.create({
-        data: getEmptyUser({
-          uname: 'DUMMY_02_Nickname',
-          password: 'TEST',
-          role: 'USER',
-        })
-      });
 }

@@ -118,7 +118,7 @@ export default function ScoreboardTabs() {
             <thead className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white uppercase text-xs font-semibold">
               <tr>
                 <th className="px-6 py-4">Spieler</th>
-                <th className="px-6 py-4">Punkte</th>
+                <th className="px-6 py-4">Wertung</th>
                 <th className="px-6 py-4">Letztes Update</th>
               </tr>
             </thead>

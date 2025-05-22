@@ -64,17 +64,17 @@ export async function gameEntries() {
   const game3 = await prisma.game.create({
     data: {
       url: '',
-      tagged: ":unit:treffer:unit:",
+      tagged: ":unit:trefferstreak:unit:",
       languages: {
         create: [
           {
             language: 'de',
             title: 'Floppy-Diskus',
-            story: '',
-            station: '',
-            capacity: '',
-            descriptionGame: '',
-            descriptionPoints: ''
+            story: 'Einst eine olympische Disziplin der Götter, nun die der IT-Abteilung. Geschaffen aus den Mineralien der Erde und gefüllt mit dem Wissen, das es Götter gleichtut.',
+            station: 'Innenhof Ost',
+            capacity: '2 Spieler',
+            descriptionGame: 'Auf dem Tisch liegen Floppy-Disks. Du befindest dich hinter der Startmarkierung und musst in den Eimer werfen.',
+            descriptionPoints: 'Trage die Anzahl der erfolgreichen Treffer hintereinander ein.'
           },
           {
             language: 'en',
@@ -122,17 +122,17 @@ export async function gameEntries() {
   const game5 = await prisma.game.create({
     data: {
       url: '',
-      tagged: ":unit:dosen:unit:",
+      tagged: ":unit:Dosen:unit:",
       languages: {
         create: [
           {
             language: 'de',
             title: 'Dosenschießen',
-            story: '',
-            station: '',
-            capacity: '',
-            descriptionGame: '',
-            descriptionPoints: ''
+            story: 'Das Spiel des Poseidon. Der Mensch verursacht unmengen an Müll im Ozean. Seine gestörte und in Müll vernarrte Tochter hat sich bei einem Ausflug an Land Dosenschießen abgeschaut und ihr Vater liebt nun dieses Spiel.',
+            station: 'Rechter Baum vom Mensaausgang.',
+            capacity: '1 Spieler',
+            descriptionGame: 'Auf dem Tisch liegen Wasserpistolen, mit denen ihr die Dosen vom Tisch gegenüber runterschießen müsst. Ihr habt 1 min Zeit.',
+            descriptionPoints: 'Trag die Menge der auf dem Boden liegenden Dosen in dein Punktefeld ein.'
           },
           {
             language: 'en',
@@ -157,11 +157,11 @@ export async function gameEntries() {
           {
             language: 'de',
             title: 'Falten und Fliegen',
-            story: '',
-            station: '',
-            capacity: '',
-            descriptionGame: '',
-            descriptionPoints: ''
+            story: 'Hermes der Götterbote (und Inhaber zahlreicher weiterer Dienstleistungen) ist im Urlaub. Er sucht einen Ersatzboten für diesen Zeitraum.',
+            station: 'Hinterausgang West',
+            capacity: '5 Spieler',
+            descriptionGame: 'Auf dem Tisch liegt Papier. Baut damit euren besten Flieger, um am schnellsten und weitesten zu kommen. Die Botschaft wartet.',
+            descriptionPoints: 'Tragt die Distanz des Fluges in das Punktefeld  ein.'
           },
           {
             language: 'en',
@@ -215,11 +215,11 @@ export async function gameEntries() {
           {
             language: 'de',
             title: 'Kühles Helles',
-            story: '',
-            station: '',
-            capacity: '',
-            descriptionGame: '',
-            descriptionPoints: ''
+            story: 'O"zapft"s, hallt es aus den Wolken. Dionysos fordert dich zu einem Duell heraus - es geht um die Prmille.',
+            station: 'Hinterausgang Ost',
+            capacity: '3 Spieler',
+            descriptionGame: 'Auf dem Tisch stehen Maaßkrüge. Sie sind teils mit Wasser gefüllt. Nehmt ein Glas, streckt den Arm aus und stoppt die Zeit, die ihr es halten könnt.',
+            descriptionPoints: 'Tragt die Sekunden in das Wertungsfeld ein.'
           },
           {
             language: 'en',
@@ -332,9 +332,9 @@ export async function gameEntries() {
             language: 'de',
             title: 'Kegeln',
             story: '',
-            station: '',
-            capacity: '',
-            descriptionGame: '',
+            station: 'Rechter Rand der Wiese',
+            capacity: '? Spieler',
+            descriptionGame: 'Es gibt eine Kugel, mit der ihr die Kegel von der Startlinie aus umwerfen müsst. ',
             descriptionPoints: ''
           },
           {

@@ -13,7 +13,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
     const modalRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
     const { t } = useTranslation();  // Hook innerhalb der Komponente verwenden
-    const hour = new Date().getHours().toString().padStart(2, '0');
+    const hour = new Date().getHours();
     const min = new Date().getMinutes();
 
     useEffect(() => {
@@ -75,7 +75,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
             >
                 {/* Modal Header (Icon + Title + Close Button) */}
                 <div className="flex justify-between items-center mb-4 ">
-                    <h2 className="flex items-center text-2xl text-pink-500">
+                    <h2 className="flex items-center text-3xl text-white-500">
                         Timetable
                     </h2>
                     
@@ -87,19 +87,64 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
                         X
                     </button>
                 </div>
+ 
+                {/* Ist event Zeit : vor nächstem event Zeit : nach Event Zeit*/ }
+                <div className="overflow-y-auto max-h-[40vh] pr-2">
+<table className="mt-4 table-auto w-full max-w-md text-left border-collapse">
+  <thead>
+    <tr>
+      <th className="text-white font-semibold pb-2 pr-8">Zeit</th>
+      <th className="text-white font-semibold pb-2">Event</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className="border-b border-white/10">
+      <td className="text-white pr-8">16:00</td>
+      <td className={`${hour < 16 && min >= 0 ? "text-white-500 text-lg py-4" : hour >= 16 && min > 0 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal `}>
+        {t("tt-0")}
+      </td>
+    </tr>
+    <tr className="border-b border-white/10">
+      <td className="text-white pr-8">17:00</td>
+      <td className={`${hour === 17 && min >= 0 ? "text-white-500 text-lg py-4" : hour >= 17 && min > 0 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
+        {t("tt-1")}
+      </td>
+    </tr>
+    <tr className="border-b border-white/10">
+      <td className="text-white pr-8">19:30</td>
+      <td className={`${hour === 19 && min >= 30 ? "text-white-500 text-lg py-4"  : hour >= 19 && min > 30 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
+        {t("tt-2")}
+      </td>
+    </tr>
+    <tr className="border-b border-white/10">
+      <td className="text-white pr-8">20:30</td>
+      <td className={`${hour === 20 && min >= 30 ? "text-white-500 text-lg py-4" : hour >= 20 && min > 30 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
+        {t("tt-3")}
+      </td>
+    </tr>
+    <tr className="border-b border-white/10">
+      <td className="text-white pr-8">22:00</td>
+      <td className={`${hour === 22 && min >= 0 ? "text-white-500 text-lg py-4" : hour >= 22 && min > 0 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
+        {t("tt-4")}
+      </td>
+    </tr>
+    <tr className="border-b border-white/10">
+      <td className="text-white pr-8">23:30</td>
+      <td className={`${hour === 23 && min >= 30 ? "text-white-500 text-lg py-4" : hour >= 23 && min > 30 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
+        {t("tt-5")}
+      </td>
+    </tr>
+    <tr className="border-b border-white/10">
+      <td className="text-white pr-8">01:00</td>
+      <td className={`${hour === 1 && min >= 0 ? "text-white-500 text-lg py-4" : hour <= 2 && min > 0 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
+        {t("tt-6")}
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-                {/* Zwei untereinander platzierte Buttons */}
-                <div className="flex flex-col space-y-4 mt-4">
-                <p className={` ${hour=="16" && min>=0  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-0")}</p>
-                <p className={` ${hour=="17" && min>=0  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-1")}</p>
-                <p className={` ${hour=="19" && min>=30  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-2")}</p>
-                <p className={` ${hour=="20" && min>=30  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-3")}</p>
-                <p className={` ${hour=="20" && min>=30  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-4")}</p>
-                <p className={` ${hour=="20" && min>=30  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-5")}</p>
-                <p className={` ${hour=="20" && min>=30  ? "text-pink-500" : "text-blue-500"}`}>{t("tt-6")}</p>
 
-
-                </div>
             </div>
         </div>
     );

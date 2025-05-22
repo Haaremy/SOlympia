@@ -19,12 +19,12 @@ export async function GET(req: Request) {
         ]
   }
 });
-  const foundTeam = nutzer[0]!;
+  const foundUser = nutzer[0];
 
   return NextResponse.json({
     found: true,
     user: {
-      uname: foundTeam.uname,
+      uname: foundUser.uname,
     },
   });
 }

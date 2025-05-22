@@ -182,9 +182,9 @@ export default function GamesPage({ games, settings }: { games: Game[], settings
               onClick={() => handleInfoOpen(game, settings)}
             >
               <Image
-                src={!game.tagged?.includes("noGame") ? `/images/game_${(game.id%3)}.jpg` : `/images/station.jpg`}
+                src={!game.tagged?.includes("noGame") ? !game.tagged?.includes("noScoreboard") ? `/images/game_${(game.id%2)}.jpg` : `/images/game_2.jpg` : `/images/station.jpg`}
                 alt="Türchen Cover"
-                className={`w-full rotate-${(game.id%3)*90} object-cover bg-gray-300`}
+                className={`w-full rotate-${!game.tagged?.includes("noScoreboard") ? (game.id%3)*90 : (game.id)*30} object-cover bg-gray-300`}
                 width={600}
                 height={600}
               />

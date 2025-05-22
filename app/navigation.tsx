@@ -76,9 +76,30 @@ export default function Navigation() {
             setShowLanguage(true); // Shows language selection if no language set
         } else if (status === "authenticated") {
            // handleLoginOpen(); // Open login modal if authenticated
-           handleTimePlanOpen();
+           
         }
     }
+
+  const time = new Date().getHours() * 60 + new Date().getMinutes(); // aktuelle Minuten seit Mitternacht
+const lastChecked = sessionStorage.getItem("timePlanChecked");
+
+if (lastChecked) {
+  const diff = time - parseInt(lastChecked, 10);
+
+  if (diff > 15) { // z.B. 15 Minuten Sperre
+    handleTimePlanOpen();
+    sessionStorage.setItem("timePlanChecked", time.toString());
+  } else if (diff<0){
+    sessionStorage.setItem("timePlanChecked", time.toString());
+  }
+} else {
+  handleTimePlanOpen();
+  sessionStorage.setItem("timePlanChecked", time.toString());
+}
+
+    
+    
+    
 }, [status, user?.uname, i18n, handleLoginOpen]); // Füge handleLoginOpen hinzu
 
   
