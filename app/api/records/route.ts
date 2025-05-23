@@ -41,7 +41,7 @@ export async function GET() {
   // Verarbeite die Spiele und finde den Top-Spieler
   const result = games.map((game) => {
     // Funktion zum Abrufen des Spieler-Namens
-    const getValue = (item: any): number => item.value;
+    const getValue = (item: typeof game.points[0]): number => item.value;
 
     // Hole den besten Spieler basierend auf den Punkten
     const topP = getTopPlayer(game.points, { order: 'desc', getValue });
