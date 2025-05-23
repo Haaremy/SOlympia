@@ -53,7 +53,7 @@ const Modal: React.FC<ModalProps> = ({ title, message, color, onClose }) => {
 
     return (
         <div className="fixed inset-0 flex justify-center items-center bg-white/20 dark:bg-black/30 backdrop-blur-sm z-50">
-            <div className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-6 rounded-lg shadow-lg w-96">
+            <div className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-6 rounded-lg shadow-lg w-96 m-4">
                 <h2 className={`text-xl font-semibold text-${color}-500`}>{title}</h2>
                 <br/>
                 <p>{message}</p>

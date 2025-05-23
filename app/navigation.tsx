@@ -41,7 +41,7 @@ export default function Navigation() {
     setShowLanguage(false);
 
     if (localStorage.getItem("language") && !session) {
-      setShowLogin(true); // Login anzeigen, wenn kein Session vorhanden
+      //setShowLogin(true); // Login anzeigen, wenn kein Session vorhanden
     }
   };
 
@@ -123,7 +123,7 @@ if (lastChecked) {
             >
               <p className={`text-lg font-semibold text-gray-800 dark:text-gray-200`}>
                 FSR INS&nbsp;
-                <code className="font-mono font-bold text-pink-500 dark:text-pink-400">
+                <code className="font-mono font-bold text-pink-500 dark:text-pink-400 text-sm">
                   {t('calender')}
                 </code>
               </p>

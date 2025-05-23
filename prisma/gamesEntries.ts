@@ -238,7 +238,7 @@ export async function gameEntries() {
   const game9 = await prisma.game.create({
     data: {
       url: '',
-      tagged: ":unit:treffer:unit:,noScoreboard",
+      tagged: "noScoreboard",
       languages: {
         create: [
           {

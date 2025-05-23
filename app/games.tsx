@@ -56,7 +56,7 @@ export default function GamesPage({ games, settings }: { games: Game[], settings
   const [selectedGame, setSelectedGame] = useState<GameData | null>(null);
   const [language, setLanguage] = useState("de"); // Default
   const { isModalOpen } = useUI();
-  const { i18n } = useTranslation();  // Hook innerhalb der Komponente verwenden
+  const { i18n, t } = useTranslation();  // Hook innerhalb der Komponente verwenden
 
 
   // Setze die Sprache basierend auf i18n
@@ -154,7 +154,7 @@ export default function GamesPage({ games, settings }: { games: Game[], settings
       <div className="flex-1 w-full transition-all duration-300">
         <input
           type="text"
-          placeholder="Suche nach Station..."
+          placeholder={t("searchStation")}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className={`${isModalOpen ? "hidden" : "block"} 
@@ -169,16 +169,16 @@ export default function GamesPage({ games, settings }: { games: Game[], settings
             focus:outline-none focus:ring-2 focus:ring-pink-500 transition ${isScrolled ? "bottom-40" : "bottom-5"}
             `}
         />
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-10">
           {filteredGames.length === 0 && !searchQuery && (
-            <p className="col-span-full text-center text-gray-500">Keine Station gefunden.</p>
+            <p className="col-span-full text-center text-gray-500">{t("noStation")}</p>
           )}
 
           {filteredGames.map((game) => (
             
             <div
               key={game.id}
-              className="relative flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden group cursor-pointer transition duration-300 ease-in-out hover:shadow-xl hover:scale-105"
+              className={`m-2 relative flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden group cursor-pointer transition duration-300 ease-in-out hover:shadow-xl hover:scale-105`}
               onClick={() => handleInfoOpen(game, settings)}
             >
               <Image

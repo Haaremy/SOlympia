@@ -14,7 +14,7 @@ export default function Footer() {
         <Link href="/" className="flex items-center text-gray-800 dark:text-gray-200">
           <p className="text-lg font-semibold">
             {t('fsr_long')} -{" "}
-            <span className="font-mono font-bold text-pink-500 dark:text-pink-400">
+            <span className="font-mono font-bold text-pink-500 dark:text-pink-400 text-sm">
               {t("calender")}
             </span>
           </p>
@@ -26,8 +26,8 @@ export default function Footer() {
         {/* Link 2 */}
         <Link href="https://instagram.com/haaremy" className="flex items-center text-gray-800 dark:text-gray-200">
           <p className="font-mono font-bold">
-            <span className="text-lg font-semibold text-white-500 dark:text-white-400">{t("author")} </span>
-            <span className="text-lg font-semibold text-pink-500 dark:text-pink-400">@Haaremy</span>
+            <span className="text-sm font-semibold text-white-500 dark:text-white-400">{t("author")} </span>
+            <span className="text-sm font-semibold text-pink-500 dark:text-pink-400">@Haaremy</span>
           </p>
         </Link>
       </div>

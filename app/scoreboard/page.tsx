@@ -1,6 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
+import { useTranslation } from 'next-i18next';
+import '../../lib/i18n';
+
 
 // Interfaces
 interface User {
@@ -40,6 +43,8 @@ export default function ScoreboardTabs() {
   const [user, setUser] = useState<User[]>([]);
   const [records, setRecords] = useState<GameRecord[]>([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();  // Hook innerhalb der Komponente verwenden
+
 
   useEffect(() => {
     const fetchScoreboardAndRecords = async () => {
@@ -80,6 +85,10 @@ export default function ScoreboardTabs() {
     return new Date(date).toLocaleDateString(undefined, options);
   };
 
+  const getUnit = (unit: string) => {
+    return t(unit)
+  }
+
 
   return (
     <main className="min-h-screen pt-20 bg-pink-50 dark:bg-gray-900 transition-all duration-300 p-4 sm:p-8">
@@ -104,7 +113,7 @@ export default function ScoreboardTabs() {
                 : "text-gray-700 dark:text-gray-300 hover:bg-pink-100 dark:hover:bg-gray-700"
             }`}
           >
-            Weltrekorde
+            {t("Weltrekorde")}
           </button>
         </div>
       </div>
@@ -113,74 +122,86 @@ export default function ScoreboardTabs() {
       {loading ? (
         <p className="text-center text-gray-600 dark:text-gray-300">Lädt...</p>
       ) : activeTab === "scoreboard" ? (
-        <div className="overflow-x-auto w-full rounded-xl shadow-md bg-white dark:bg-gray-800">
-          <table className="min-w-full text-left text-sm text-gray-700 dark:text-gray-200">
-            <thead className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white uppercase text-xs font-semibold">
-              <tr>
-                <th className="px-6 py-4">Spieler</th>
-                <th className="px-6 py-4">Wertung</th>
-                <th className="px-6 py-4">Letztes Update</th>
-              </tr>
-            </thead>
-            <tbody>
-              {(() => {
-                const gameMap: Record<
-                  number,
-                  {
-                    game: User["points"][0]["game"];
-                    players: {
-                      name: string;
-                      value: number;
-                      lastUpdated: Date;
-                    }[];
-                  }
-                > = {};
+  <div className="overflow-x-auto w-full rounded-xl shadow-md bg-white dark:bg-gray-800">
+    <table className="min-w-full text-center text-sm text-gray-700 dark:text-gray-200">
+      <thead className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white uppercase text-xs font-semibold">
+        <tr>
+          <th className="px-6 py-4">{t("player")}</th>
+          <th className="px-6 py-4">{t("wertung")}</th>
+          <th className="px-6 py-4">{t("update")}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {(() => {
+          const gameMap: Record<
+            number,
+            {
+              game: User["points"][0]["game"];
+              players: {
+                name: string;
+                value: number;
+                lastUpdated: Date;
+              }[];
+            }
+          > = {};
 
-                user.forEach((u) => {
-                  u.points.forEach((entry) => {
-                    const gameId = entry.game.id;
-                    if (!gameMap[gameId]) {
-                      gameMap[gameId] = {
-                        game: entry.game,
-                        players: [],
-                      };
-                    }
+          user.forEach((u) => {
+            u.points.forEach((entry) => {
+              const gameId = entry.game.id;
+              if (!gameMap[gameId]) {
+                gameMap[gameId] = {
+                  game: entry.game,
+                  players: [],
+                };
+              }
 
-                    gameMap[gameId].players.push({
-                      name: u.name,
-                      value: entry.value,
-                      lastUpdated: new Date(entry.lastUpdated),
-                    });
-                  });
-                });
+              gameMap[gameId].players.push({
+                name: u.name,
+                value: entry.value,
+                lastUpdated: new Date(entry.lastUpdated),
+              });
+            });
+          });
 
-                return Object.entries(gameMap)
-                  .sort((a, b) => Number(a[0]) - Number(b[0]))
-                  .map(([gameId, { game, players }]) => {
-                    const sortedPlayers = players.sort((a, b) => b.value - a.value);
-                    return (
-                      <React.Fragment key={gameId}>
-                        <tr className="bg-pink-100 dark:bg-gray-700">
-                          <td colSpan={3} className="px-6 py-4 font-semibold text-pink-700 dark:text-pink-300">
-                            
-                            {(game.languages[0])}
-                          </td>
-                        </tr>
-                        {sortedPlayers.map((player, idx) => (
-                          <tr key={idx} className="border-t border-gray-200 dark:border-gray-600">
-                            <td className="px-6 py-4">{player.name}</td>
-                            <td className="px-6 py-4">{player.value}</td>
-                            <td className="px-6 py-4">{formatDate(player.lastUpdated)}</td>
-                          </tr>
-                        ))}
-                      </React.Fragment>
-                    );
-                  });
-              })()}
-            </tbody>
-          </table>
-        </div>
-      ) : (
+          return Object.entries(gameMap)
+            .sort((a, b) => Number(a[0]) - Number(b[0])) // Sortiere nach GameId
+            .map(([gameId, { game, players }]) => {
+              const sortedPlayers = players.sort((a, b) => b.value - a.value); // Sortiere Spieler nach Punkten
+
+              return (
+                <React.Fragment key={gameId}>
+                  {/* Spielname als Header */}
+                  <tr className="border-t border-gray-200 dark:border-gray-600">
+                    <td
+                      colSpan={1}
+                      className="px-6 py-4 text-left font-semibold text-pink-700 dark:text-pink-300 dark:bg-gray-70"
+                    >
+                      {game.languages[0]} {/* Hier den Spielnamen anzeigen */}
+                    </td>
+                    <td
+                      colSpan={1}
+                      className="px-6 py-4font-semibold text-pink-700 dark:text-pink-300 text-center dark:bg-gray-70"
+                    >
+                      {getUnit(game.tagged.split(":unit:")[1])} {/* Hier den Einheitswert anzeigen */}
+                    </td>
+                  </tr>
+
+                  {/* Spieler-Daten */}
+                  {sortedPlayers.map((player, idx) => (
+                    <tr key={idx} className="border-t border-gray-200 dark:border-gray-600">
+                      <td className="px-6 py-4">{player.name}</td>
+                      <td className="px-6 py-4">{player.value}</td>
+                      <td className="px-6 py-4">{formatDate(player.lastUpdated)}</td>
+                    </tr>
+                  ))}
+                </React.Fragment>
+              );
+            });
+        })()}
+      </tbody>
+    </table>
+  </div>
+) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
           {records.length === 0 ? (
             <p className="text-gray-600 dark:text-gray-300">Keine Weltrekorde gefunden.</p>
@@ -200,7 +221,7 @@ export default function ScoreboardTabs() {
                       👑 {record.user.name}{" "}
                     </p>
                     <p className="text-grey-900 dark:text-grey-900 mt-2 font-medium">
-                      Rekord: {record.topPoints} {record.tagged?.split(":unit:")[1] || ""} <br />
+                      Rekord: {record.topPoints} {getUnit(record.tagged?.split(":unit:")[1]) || ""} <br />
                     </p>
                   </div>
                 )

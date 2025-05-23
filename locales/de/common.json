@@ -14,6 +14,8 @@
     "browserSettings":"Browser Einstellungen",
     "dark":"Dunkel",
     "light":"Hell",
+    "searchStation":"Suche nach Station...",
+    "noStation":"Keine Staion gefunden.",
     "enterPlayer":"<Name Spieler",
     "enterTeam": "<Name des Teams>",
     "tt-0": "Start des Sommerfest und der Minispiele 2025 des FSR INS.",
@@ -22,6 +24,14 @@
     "tt-3": "Ende der Minispiele.",
     "tt-4": "Line-Up: Hardtechno",
     "tt-5": "Line-Up: Tekk",
-    "tt-6": "Wer nicht geht, räumt mit auf."
+    "tt-6": "Wer nicht geht, räumt mit auf.",
+    "Weltrekorde": "Weltrekorde",
+    "wertung":"Wertung",
+    "hits": "Treffer",
+    "sec": "Sekunden",
+    "m":"Meter",
+    "dosen":"Dosen / Minute",
+    "trefferstreak":"Streak",
+    "update": "Letztes Update"
   }
   

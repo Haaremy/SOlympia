@@ -73,13 +73,13 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
         >
             <div
                 ref={modalRef}
-                className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-6 rounded-lg shadow-lg w-full max-w-md max-h-[70vh] overflow-hidden flex flex-col"
+                className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-6 rounded-lg shadow-lg w-full max-w-md max-h-[70vh] overflow-hidden flex flex-col m-4"
                 onClick={(e) => e.stopPropagation()} // Prevent modal close when clicking inside modal
                 aria-labelledby="modal-title"
             >
                 {/* Modal Header (Icon + Title + Close Button) */}
                 <div className="flex justify-between items-center mb-4 ">
-                    <div className="flex items-center">
+                    <div className="items-center">
                         <Image
                             src={`/images/globe.svg`}
                             alt="Globe Icon"
