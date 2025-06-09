@@ -350,7 +350,7 @@ const formatTime = (ms: number) => {
       className="w-full px-4 py-2 border-2 border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 transition dark:text-white"
     />
 }
-    {timeLeft>0 && message.started && !message.tagged.includes("noScoreboard") && (
+    {timeLeft>0 && message.started && !message.tagged.includes("noGame") && (
     <div className="text-right">
       <button
         className="ml-auto inline-flex px-2 py-1 bg-pink-500 text-white text-xl rounded-lg shadow-lg hover:bg-pink-600 transition duration-300"

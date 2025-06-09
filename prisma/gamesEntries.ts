@@ -215,7 +215,7 @@ export async function gameEntries() {
           {
             language: 'de',
             title: 'Kühles Helles',
-            story: 'O"zapft"s, hallt es aus den Wolken. Dionysos fordert dich zu einem Duell heraus - es geht um die Prmille.',
+            story: 'O"zapft"s, hallt es aus den Wolken. Dionysos fordert dich zu einem Duell heraus - es geht um die Promille.',
             station: 'Hinterausgang Ost',
             capacity: '3 Spieler',
             descriptionGame: 'Auf dem Tisch stehen Maaßkrüge. Sie sind teils mit Wasser gefüllt. Nehmt ein Glas, streckt den Arm aus und stoppt die Zeit, die ihr es halten könnt.',
@@ -244,7 +244,7 @@ export async function gameEntries() {
           {
             language: 'de',
             title: 'Bierpong',
-            story: '',
+            story: 'Schon Dionysos selbst soll geworfen haben – in goldene Kelche, zielsicher und leicht beschwipst. Heute seid ihr dran. Mit Wasser. Und Ehre.',
             station: '',
             capacity: '',
             descriptionGame: '',
@@ -302,7 +302,7 @@ export async function gameEntries() {
           {
             language: 'de',
             title: 'Techno Floor',
-            story: 'Lineup & DJ Tom Grothum',
+            story: 'Lineup & DJ Rekingdrms',
             station: 'Erdgeschoss - Ostflur',
             capacity: 'Jeder der Party will!',
             descriptionGame: '19:30 - 01:00 Uhr',
