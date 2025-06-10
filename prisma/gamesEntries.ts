@@ -252,8 +252,8 @@ export async function gameEntries() {
           },
           {
             language: 'en',
-            title: 'A summer festival classic! Beer pong requires precision aim – and a steady hand. Two teams compete, trying to throw a ping-pong ball into the opposing teams cups. But dont worry: Were making the game festival-friendly – ​​the cups are filled with water, and the emphasis is on fun!',
-            story: 'Beer Pong',
+            title: 'Beer Pong',
+            story: 'A summer festival classic! Beer pong requires precision aim – and a steady hand. Two teams compete, trying to throw a ping-pong ball into the opposing teams cups. But dont worry: Were making the game festival-friendly – ​​the cups are filled with water, and the emphasis is on fun!',
             station: 'Rear Exit East',
             capacity: '2 x 2 Teams',
             descriptionGame: '1. Each team sets up the cups in a triangle on their side of the table. </br>2. Players alternate – each team has two throws per round. </br>3. If a ball hits an opponents cup, it is removed. </br>4. The team that hits all of the opponents cups first wins! </br>5. Fair play bonus: Trick shots are allowed – but no elbows over the edge of the table!',
