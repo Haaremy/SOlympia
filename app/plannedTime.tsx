@@ -15,6 +15,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
     const { t } = useTranslation();  // Hook innerhalb der Komponente verwenden
     const hour = new Date().getHours();
     const min = new Date().getMinutes();
+    const curTime = hour*60+min;
 
     useEffect(() => {
         const modal = modalRef.current;
@@ -100,43 +101,43 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
   <tbody>
     <tr className="border-b border-white/10">
       <td className="text-white pr-8">16:00</td>
-      <td className={`${hour <= 16 && min >= 0 ? "text-white-500 text-lg py-4" : hour >= 17 && min > 0 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal `}>
+      <td className={`${curTime < (17*60) ? "text-white-500 text-lg py-4" : curTime >= (17*60) ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal `}>
         {t("tt-0")}
       </td>
     </tr>
     <tr className="border-b border-white/10">
       <td className="text-white pr-8">17:00</td>
-      <td className={`${hour === 17 && min >= 0 ? "text-white-500 text-lg py-4" : hour >= 19 && min >= 30 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
+      <td className={`${curTime < (19*60+30) && curTime >= (17*60) ? "text-white-500 text-lg py-4" : curTime >= (19*60+30)? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
         {t("tt-1")}
       </td>
     </tr>
     <tr className="border-b border-white/10">
       <td className="text-white pr-8">19:30</td>
-      <td className={`${hour === 19 && min >= 30 ? "text-white-500 text-lg py-4"  : hour >= 20 && min >= 30 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
+      <td className={`${curTime < (22*60) && curTime >= (19*60+30) ? "text-white-500 text-lg py-4"  : curTime >= (22*60) ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
         {t("tt-2")}
       </td>
     </tr>
     <tr className="border-b border-white/10">
       <td className="text-white pr-8">20:30</td>
-      <td className={`${hour === 20 && min >= 30 ? "text-white-500 text-lg py-4" : hour >= 22 && min >= 30 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
+      <td className={`${curTime < (22*60) && curTime >= (20*60+30) ? "text-white-500 text-lg py-4" : curTime >= (22*60) ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
         {t("tt-3")}
       </td>
     </tr>
     <tr className="border-b border-white/10">
       <td className="text-white pr-8">22:00</td>
-      <td className={`${hour === 22 && min >= 0 ? "text-white-500 text-lg py-4" : hour >= 23 && min >= 0 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
+      <td className={`${curTime < (23*60+30) && curTime >= (22*60) ? "text-white-500 text-lg py-4" : curTime >= (23*60+30) ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
         {t("tt-4")}
       </td>
     </tr>
     <tr className="border-b border-white/10">
       <td className="text-white pr-8">23:30</td>
-      <td className={`${hour === 23 && min >= 30 ? "text-white-500 text-lg py-4" : hour <= 1 && min >= 0 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
+      <td className={`${curTime < (1*60)? "text-white-500 text-lg py-4" : curTime >= (1*60) && curTime < (2*60) ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
         {t("tt-5")}
       </td>
     </tr>
     <tr className="border-b border-white/10">
       <td className="text-white pr-8">01:00</td>
-      <td className={`${hour === 1 && min >= 0 ? "text-white-500 text-lg py-4" : hour <= 2 && min >= 0 ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
+      <td className={`${curTime < (3*60) ? "text-white-500 text-lg py-4" : curTime >= (3*60) && curTime < (3*60) ? "text-blue-500 text-sm" : "text-pink-500 text-md py-1"} break-words whitespace-normal`}>
         {t("tt-6")}
       </td>
     </tr>

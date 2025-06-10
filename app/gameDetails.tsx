@@ -305,7 +305,7 @@ const formatTime = (ms: number) => {
                     <p className="text-sm mb-4">
                         {t("howTo")}
                         <br />
-                        <span  />{ message.content}
+                         <span dangerouslySetInnerHTML={{ __html: message.content }} />
                     </p>
 
                     {/* Points Description */}
