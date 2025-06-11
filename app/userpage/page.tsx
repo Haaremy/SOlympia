@@ -73,7 +73,15 @@ export default function Page() {
     }
   };
 
-  const toggleDarkMode = () => setDarkMode(!darkMode);
+  const toggleDarkMode = () => {
+    
+    if (!darkMode) {
+  document.documentElement.classList.add('dark');
+} else {
+  document.documentElement.classList.remove('dark');
+}
+setDarkMode(!darkMode);
+  }
 
   const handleLanguage = (lang: string) => {
     i18n.changeLanguage(lang);

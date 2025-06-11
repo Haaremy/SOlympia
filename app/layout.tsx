@@ -28,14 +28,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de">
+    <html lang="de" className="dark">
       <Head>
         {/* Favicon als SVG setzen */}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
         
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} dark ${geistMono.variable} antialiased`}
       >
               
           <SessionProvider>
